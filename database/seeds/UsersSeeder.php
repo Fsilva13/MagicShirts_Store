@@ -1,7 +1,5 @@
 <?php
 
-namespace Database\Seeders;
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -167,7 +165,7 @@ class UsersSeeder extends Seeder
         // LARAVEL 7:
         // $allFiles = collect(File::files(database_path('seeds/fotos')));
         // LARAVEL 8:
-        $allFiles = collect(File::files(database_path('seeders/fotos')));
+        $allFiles = collect(File::files(database_path('seeds/fotos')));
         foreach ($allFiles as $f) {
             if (strpos($f->getPathname(), 'M_')) {
                 $this->files_M[] = $f->getPathname();
