@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome');    //Retorna a pag. inicial do site.
 });
+
+//Route::get('Categorias', 'CategoriasController@index') ->Name('Categorias.index'); 
