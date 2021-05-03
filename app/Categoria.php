@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categoria extends Model
 {
-    //
+    public function estampas(){
+		return $this->hasMany('App\Estampa');
+	}
 }
