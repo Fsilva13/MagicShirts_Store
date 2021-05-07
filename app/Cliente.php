@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {
     public function encomendas(){
-        return $this->belongsTo('App\Encomenda');
+        return $this->haMany('App\Encomenda');
     }
 
     public function users(){
