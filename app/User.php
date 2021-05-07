@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public function clientes{
+    public function clientes(){
         return $this->belongsTo('App\Cliente');
     }
     /**
