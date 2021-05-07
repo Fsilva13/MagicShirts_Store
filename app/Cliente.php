@@ -11,7 +11,7 @@ class Cliente extends Model
     }
 
     public function users(){
-        return $this->hasOne('App\User', 'id');
+        return $this->belongsTo('App\User', 'id');
     }
     public function estampas(){
 		return $this->hasMany('App\Estampa');
