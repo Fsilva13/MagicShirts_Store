@@ -11,6 +11,6 @@ class Cor extends Model
 	protected $keyType = 'string';
 
    public function tshirts(){
-		return $this->hasMany('App\Tshirt'); 
+		return $this->hasMany('App\Tshirt');
 	}
 }
