@@ -10,8 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public function clientes{
-        return $this->belongsTo('App\Cliente');
+    public function cliente(){
+        return $this->hasOne('App\Cliente','id');
     }
     /**
      * The attributes that are mass assignable.
