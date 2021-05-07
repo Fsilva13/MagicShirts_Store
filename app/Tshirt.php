@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tshirt extends Model
 {
-    public function tshirts{
+    public function encomenda(){
         return $this->hasMany('App\Encomenda');
     }
    public function estampa(){
