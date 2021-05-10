@@ -18,3 +18,11 @@ Route::get('/', function () {
 });
 
 //Route::get('Categorias', 'CategoriasController@index') ->Name('Categorias.index'); 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
