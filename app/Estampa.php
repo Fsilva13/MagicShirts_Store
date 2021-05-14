@@ -10,7 +10,7 @@ class Estampa extends Model
 		return $this->belongsTo('App\Categoria');
 	}
 
-	public function cLiente(){
+	public function cliente(){
 		return $this->belongsTo('App\Cliente');
 	}
 	public function tshirts(){

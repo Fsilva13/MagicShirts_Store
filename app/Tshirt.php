@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tshirt extends Model
 {
-    public function tshirts(){
-        return $this->belongsTo('App\Encomenda');
+    public function encomenda(){
+        return $this->hasMany('App\Encomenda');
     }
    public function estampa(){
 		return $this->belongsTo('App\Estampa');
 	}
-
 	public function cor(){
 		return $this->belongsTo('App\Cor');
 	}
+	//cenas
 }
