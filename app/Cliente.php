@@ -10,7 +10,7 @@ class Cliente extends Model
         return $this->haMany('App\Encomenda');
     }
 
-    public function users(){
+    public function user(){
         return $this->belongsTo('App\User', 'id');
     }
     public function estampas(){
