@@ -41,11 +41,4 @@ class EncomendasController extends Controller
  		
    }
 
-<<<<<<< Updated upstream
-
-=======
-   public function create(){
-   		return view('encomenda.index');
-   }
->>>>>>> Stashed changes
 }
