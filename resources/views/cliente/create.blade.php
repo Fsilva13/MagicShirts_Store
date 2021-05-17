@@ -41,10 +41,15 @@
   <label class="col-md-4 control-label" for="tipo_pagamento">Tipo de Pagamento</label>
   <div class="col-md-4">
     <select id="tipo_pagamento" name="tipo_pagamento" class="form-control">
-      <option value="">VISA</option>
-      <option value="">MC</option>
-      <option value="">PAYPAL</option>
+      <option value="VISA" {{old('tipo_pagamento')}} == {{ 'VISA'? 'Selected' : ''}}>VISA</option>
+      <option value="MC"{{old('tipo_pagamento')}} == {{'MC'? 'Selected' : ''}}>MC</option>
+      <option value="PAYPAL"{{old('tipo_pagamento')}} == {{ 'PAYPAL'? 'Selected' : ''}}>PAYPAL</option>
     </select>
+    @error('tipo_pagamento')
+    <div class="error">
+      {{$message}}
+    </div>
+    @enderror
   </div>
 </div>
 
