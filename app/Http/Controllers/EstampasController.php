@@ -14,10 +14,22 @@ class EstampasController extends Controller
        return view('Estampa.index', compact('estampa'));
    }
 
-   public function store(Request $request)
-   {
+   public function store(Request $request){
+    $rules = ['nome'=> 'required',
+    'descricao' => 'nullable'
+];
 
-        $input = $request->validate();
-        $novaEstampa = Estampa::create($input);
-    }
+$messages = [
+      'nome.required' => 'É obrigatório ter um nome',
+      ];
+
+    $input = $request->validate($rules, $messages);
+  $novaEstampa = Estampa::create($input);
+
+  
+}
+
+public function create(){
+    return view('Estampa.index');
+}
 }
