@@ -27,8 +27,12 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="endereco">Endereço</label>  
   <div class="col-md-4">
-  <input id="endereco" name="endereco" type="text" placeholder="" class="form-control input-md" required="">
-    
+  <input id="endereco" name="endereco" type="text" placeholder="" class="form-control input-md" required="" value="{{old('endereco')}}">
+      @error('endereco')
+    <div class="error">
+      {{$message}}
+    </div>
+  @enderror
   </div>
 </div>
 
@@ -48,8 +52,12 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="ref_pagamento">Ref. Pagamento</label>  
   <div class="col-md-4">
-  <input id="ref_pagamento" name="ref_pagamento" type="text" placeholder="" class="form-control input-md">
-    
+  <input id="ref_pagamento" name="ref_pagamento" type="text" placeholder="" class="form-control input-md" value="{{old('ref_pagamento')}}">
+      @error('ref_pagamento')
+    <div class="error">
+      {{$message}}
+    </div>
+  @enderror
   </div>
 </div>
 
