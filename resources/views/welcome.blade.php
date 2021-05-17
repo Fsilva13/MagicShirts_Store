@@ -87,6 +87,7 @@
                 <div class="links">
                     <a href="{{ route('cliente.create') }}">Cliente</a>
                     <a href="{{ route('encomenda.create') }}">Encomenda</a>
+                    <a href="{{ route('estampa.create') }}">Estapmpas</a>
 
                 </div>
             </div>
