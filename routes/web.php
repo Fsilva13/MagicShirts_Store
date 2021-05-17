@@ -17,11 +17,13 @@ Route::get('/', function () {
     return view('welcome');    //Retorna a pag. inicial do site.
 });
 
+<<<<<<< Updated upstream
 //Route::get('Categorias', 'CategoriasController@index') ->Name('Categorias.index'); 
 Route::get('Encomenda', 'EncomendasController@index') ->Name('Encomenda');
 
 Auth::routes();
 =======
+Route::get('clientes','ClientesController@index')->name('cliente');
 >>>>>>> Stashed changes
 
 //Route::get('Categorias', 'CategoriasController@index') ->Name('Categorias.index'); 
