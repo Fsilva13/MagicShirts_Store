@@ -21,17 +21,13 @@ Route::get('/', function () {
 Route::get('Encomenda', 'EncomendasController@index') ->Name('Encomenda');
 
 Auth::routes();
+=======
+>>>>>>> Stashed changes
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('Categorias', 'CategoriasController@index') ->Name('Categorias.index'); 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

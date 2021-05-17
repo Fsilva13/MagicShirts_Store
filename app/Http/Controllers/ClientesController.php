@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Cliente
+use App\Cliente;
 
 use Illuminate\Http\Request;
 
-class CategoriasController extends Controller
+class ClientesController extends Controller
 {
     public function index()
     {
