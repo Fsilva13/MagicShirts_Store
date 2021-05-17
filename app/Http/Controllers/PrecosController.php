@@ -5,7 +5,7 @@ use App\Preco
 
 use Illuminate\Http\Request;
 
-class CategoriasController extends Controller
+class PrecosController extends Controller
 {
     public function index()
     {

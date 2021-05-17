@@ -5,7 +5,7 @@ use App\User
 
 use Illuminate\Http\Request;
 
-class CategoriasController extends Controller
+class UserController extends Controller
 {
     public function index()
     {

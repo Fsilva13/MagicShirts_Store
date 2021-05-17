@@ -5,7 +5,7 @@ use App\Estampa
 
 use Illuminate\Http\Request;
 
-class CategoriasController extends Controller
+class EstampasController extends Controller
 {
     public function index()
     {

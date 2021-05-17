@@ -5,7 +5,7 @@ use App\Encomenda
 
 use Illuminate\Http\Request;
 
-class CategoriasController extends Controller
+class EncomendasController extends Controller
 {
     public function index()
     {

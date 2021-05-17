@@ -5,7 +5,7 @@ use App\Tshirt
 
 use Illuminate\Http\Request;
 
-class CategoriasController extends Controller
+class TshirtsController extends Controller
 {
     public function index()
     {
