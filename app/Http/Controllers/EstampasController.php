@@ -13,4 +13,11 @@ class EstampasController extends Controller
 
        return view('Estampa.index', compact('estampa'));
    }
+
+   public function store(Request $request)
+   {
+
+        $input = $request->validate();
+        $novaEstampa = Estampa::create($input);
+    }
 }
