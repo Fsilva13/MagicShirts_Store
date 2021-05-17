@@ -15,6 +15,9 @@ class EncomendasController extends Controller
        return view('encomenda.index', compact('encomenda'));
    }
 */
+      public function create(){
+   		return view('encomenda.create');
+   }
    
    public function store(Request $request){
    		$rules = ['estado'=> 'nullable',
@@ -38,7 +41,5 @@ class EncomendasController extends Controller
  		
    }
 
-   public function create(){
-   		return view('encomenda.index');
-   }
+
 }
