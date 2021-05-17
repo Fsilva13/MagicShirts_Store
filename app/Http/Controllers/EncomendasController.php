@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Encomenda
+use App\Encomenda;
 
 use Illuminate\Http\Request;
 
@@ -11,13 +11,32 @@ class EncomendasController extends Controller
     {
         $encomenda = Encomenda::all();
 
-       return view('encomenda.index', compact('encomenda'));
+       return view('encomendas.index', compact('encomenda'));
    }
 
    public function store(Request $request){
+   		$rules = [
+   		'notas' => 'nullable',
+   		'nif' => 'required|digits:9',
+   		'endereco'=> 'required',
+   		'metpag' => 'required',
 
-   		$input = $request->validate();
+   	];
+
+   	$messages = [
+			 'nif.required' => 'É obrigatório ter um nif',
+			 'nif.digits' => 'O nif tem que ter 9 digitos',
+			 'endereco.required' => 'é obrigatório ter endereco',
+			 'metpag.required' => 'é obrigatorio '
+			 ];
+
+   		$input = $request->validate($rules, $messages);
  		$novaEncomenda = Encomenda::create($input);
 
+ 		
+   }
+
+   public function create(){
+   		return view('encomendas.index');
    }
 }

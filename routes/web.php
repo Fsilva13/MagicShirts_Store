@@ -17,7 +17,8 @@ Route::get('/', function () {
     return view('welcome');    //Retorna a pag. inicial do site.
 });
 
-Route::get('encomenda', 'EncomendasController@index') ->Name('Encomenda');
+Route::get('encomenda/create', 'EncomendasController@create') ->name('encomendas.create');
+Route::post('encomenda/store', 'EncomendasController@store') ->name('encomendas.store');
 Route::get('clientes','ClientesController@index')->name('cliente');
 
 
