@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 //Route::get('Categorias', 'CategoriasController@index') ->Name('Categorias.index'); 
+Route::get('Encomenda', 'EncomendasController@index') ->Name('Encomenda');
 
 Auth::routes();
 
