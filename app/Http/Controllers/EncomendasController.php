@@ -16,8 +16,8 @@ class CategoriasController extends Controller
 
    public function store(Request $request){
 
-   		//$input = $request->validate();
- 		$novaEncomenda = Candidatura::create($input);
+   		$input = $request->validate();
+ 		$novaEncomenda = Encomenda::create($input);
 
    }
 }
