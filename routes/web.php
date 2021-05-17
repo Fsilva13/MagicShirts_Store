@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');    //Retorna a pag. inicial do site.
 });
 
-Route::get('Encomenda', 'EncomendasController@index') ->Name('Encomenda');
+Route::get('encomenda', 'EncomendasController@index') ->Name('Encomenda');
 Route::get('clientes','ClientesController@index')->name('cliente');
 
 
