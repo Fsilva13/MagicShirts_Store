@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<form class="form-horizontal">
+<form class="form-horizontal" method="post" action="{{ route('cliente.store') }}">
+  @CSRF
+
 <fieldset>
 
 <!-- Form Name -->
@@ -11,7 +13,12 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="NIF">NIF</label>  
   <div class="col-md-4">
-  <input id="NIF" name="NIF" type="text" placeholder="" class="form-control input-md" required="">
+  <input id="NIF" name="NIF" type="text" placeholder="" class="form-control input-md" required="" value="{{old('NIF')}}">
+  @error('NIF')
+    <div class="error">
+      {{$message}}
+    </div>
+  @enderror
     
   </div>
 </div>

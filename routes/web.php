@@ -17,9 +17,10 @@ Route::get('/', function () {
     return view('welcome');    //Retorna a pag. inicial do site.
 });
 
-Route::get('encomenda/create', 'EncomendasController@create') ->name('encomendas.create');
-Route::post('encomenda/store', 'EncomendasController@store') ->name('encomendas.store');
-Route::get('clientes','ClientesController@index')->name('cliente');
+Route::get('encomenda/create', 'EncomendasController@create') ->name('encomenda.create');
+Route::post('encomenda/store', 'EncomendasController@store') ->name('encomenda.store');
+Route::get('cliente/create','ClientesController@create')->name('cliente.create');
+Route::post('cliente/store','ClientesController@store')->name('cliente.store');
 
 
 Auth::routes();

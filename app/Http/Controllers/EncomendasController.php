@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 
 class EncomendasController extends Controller
 {
-    public function index()
+
+/*    public function index()
     {
         $encomenda = Encomenda::all();
 
-       return view('encomendas.index', compact('encomenda'));
+       return view('encomenda.index', compact('encomenda'));
    }
-
+*/
+   
    public function store(Request $request){
    		$rules = ['estado'=> 'nullable',
    		'notas' => 'nullable',
@@ -37,6 +39,6 @@ class EncomendasController extends Controller
    }
 
    public function create(){
-   		return view('encomendas.index');
+   		return view('encomenda.index');
    }
 }

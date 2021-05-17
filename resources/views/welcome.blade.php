@@ -85,8 +85,8 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ route('cliente') }}">Cliente</a>
-                    <a href="{{ route('encomenda') }}">Encomenda</a>
+                    <a href="{{ route('cliente.create') }}">Cliente</a>
+                    <a href="{{ route('encomenda.create') }}">Encomenda</a>
 
                 </div>
             </div>

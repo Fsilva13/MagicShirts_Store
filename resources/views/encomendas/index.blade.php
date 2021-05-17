@@ -4,7 +4,7 @@
 	<title></title>
 </head>
 <body>
-	<form method="post" action="{{ route('encomendas.store') }}">
+	<form method="post" action="{{ route('encomenda.store') }}">
 		@CSRF
 		
 		<label for="nota">Notas:</label>

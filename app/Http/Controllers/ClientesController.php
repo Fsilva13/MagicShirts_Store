@@ -13,4 +13,29 @@ class ClientesController extends Controller
 
        return view('Cliente.index', compact('cliente'));
    }
+
+      public function store(Request $request){
+   		$rules = [
+  		'NIF' => 'required|digits:9',
+  		'endereco' => 'required',
+  		'tipo_pagamento' => 'required',
+  		'ref_pagamento' => 'required'
+    	];
+
+   	$messages = [
+			 'NIF.digits' => 'O nif tem que ter 9 digitos',
+			 'endereco.required' => 'NIF invalido!',
+			 'tipo_pagamento' => 'Tipo pagamento errado!',
+			 'ref_pagamento' => 'Referencia Invalida'
+			 ];
+
+   		  $input = $request->validate($rules, $messages);
+ 		  $novoCliente = Cliente::create($input);
+
+ 		
+   }
+
+    public function create(){
+   		return view('cliente.index');
+   }
 }
