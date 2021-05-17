@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EstampasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,8 @@ Route::get('/', function () {
 Route::get('encomenda/create', 'EncomendasController@create') ->name('encomendas.create');
 Route::post('encomenda/store', 'EncomendasController@store') ->name('encomendas.store');
 Route::get('clientes','ClientesController@index')->name('cliente');
+Route::get('estampa/create', 'EstampasController@create')->name('estampa.create');
+Route::post('estampa/store', 'EstampasController@store')->name('estampa.store');
 
 
 Auth::routes();
