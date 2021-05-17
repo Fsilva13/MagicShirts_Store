@@ -11,6 +11,13 @@ class CategoriasController extends Controller
     {
         $encomenda = Encomenda::all();
 
-       return view('Encomenda.index', compact('encomenda'));
+       return view('encomenda.index', compact('encomenda'));
+   }
+
+   public function store(Request $request){
+
+   		//$input = $request->validate();
+ 		$novaEncomenda = Candidatura::create($input);
+
    }
 }
