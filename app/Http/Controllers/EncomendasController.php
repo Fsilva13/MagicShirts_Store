@@ -15,7 +15,7 @@ class EncomendasController extends Controller
    }
 
    public function store(Request $request){
-   		$rules = [
+   		$rules = ['estado'=> 'nullable',
    		'notas' => 'nullable',
    		'nif' => 'required|digits:9',
    		'endereco'=> 'required',
