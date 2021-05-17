@@ -24,7 +24,7 @@ class EncomendasController extends Controller
    		'notas' => 'nullable',
    		'nif' => 'required|digits:9',
    		'endereco'=> 'required',
-   		'metpag' => 'required',
+   		'metpag' => 'required'
 
    	];
 
@@ -41,5 +41,11 @@ class EncomendasController extends Controller
  		
    }
 
+<<<<<<< Updated upstream
 
+=======
+   public function create(){
+   		return view('encomenda.index');
+   }
+>>>>>>> Stashed changes
 }

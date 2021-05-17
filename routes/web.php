@@ -18,12 +18,18 @@ Route::get('/', function () {
     return view('welcome');    //Retorna a pag. inicial do site.
 });
 
+<<<<<<< Updated upstream
 Route::get('encomenda/create', 'EncomendasController@create')->name('encomenda.create');
 Route::post('encomenda/store', 'EncomendasController@store')->name('encomenda.store');
 Route::get('cliente/create','ClientesController@create')->name('cliente.create');
 Route::post('cliente/store','ClientesController@store')->name('cliente.store');
 Route::get('estampa/create', 'EstampasController@create')->name('estampa.create');
 Route::post('estampa/store', 'EstampasController@store')->name('estampa.store');
+=======
+Route::get('encomenda/create', 'EncomendasController@create') ->name('encomenda.create');
+Route::post('encomenda/store', 'EncomendasController@store') ->name('encomenda.store');
+Route::get('clientes','ClientesController@index')->name('cliente');
+>>>>>>> Stashed changes
 
 
 Auth::routes();
