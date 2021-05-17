@@ -1,5 +1,6 @@
 @extends('layouts.app')
-<form class="form-horizontal" action="{{route(encomenda.php)}}">
+<form class="form-horizontal" method="post" action="{{route('encomenda.store')}}">
+  @CSRF
 <fieldset>
 
 <legend>Encomendas</legend>
