@@ -6,8 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
-	 protected $fillable = [
-       'NIF', 'endereco', 'tipo_pagamento', 'ref_pagamento',
+
+	/*$sql = "SELECT MAX(ID) FROM CLIENTES";
+	$dbh->query($sql);
+	
+
+	private $createTime = time();
+	private $update_time = time();
+*/
+	protected $fillable = [
+       'ID','NIF', 'endereco', 'tipo_pagamento', 'ref_pagamento', $createTime, $update_time,  //ID não é auto increment na BD
     ];
 
     public function encomendas(){
