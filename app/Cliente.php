@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
+	
 
 	protected $fillable = [
        'NIF', 'endereco', 'tipo_pagamento', 'ref_pagamento',

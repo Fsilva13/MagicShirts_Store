@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Cliente;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientesController extends Controller
 {
@@ -14,8 +15,12 @@ class ClientesController extends Controller
 
        return view('Cliente.index', compact('cliente'));
    }
-*/
+*/ 
+
       public function store(Request $request){
+
+      	$id = Auth::id();
+
    		$rules = [
   		'NIF' => 'required|digits:9',
   		'endereco' => 'required',
