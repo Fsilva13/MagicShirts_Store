@@ -37,9 +37,9 @@
 
 <!-- Select Basic -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="metpag">Metodo de Pagamento</label>
+  <label class="col-md-4 control-label" for="tipo_pagamento">Metodo de Pagamento</label>
   <div class="col-md-4">
-    <select id="metpag" name="metpag" class="form-control">
+    <select id="mtipo_pagamento" name="tipo_pagamento" class="form-control">
       <option value="Visa">Visa</option>
       <option value="MC">MC</option>
       <option value="Paypal">Paypal</option>
@@ -55,6 +55,14 @@
   </div>
 </div>
 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="data">Data</label>
+  <div class="col-md-4">                     
+ <input type="date" name="data" id="data" placeholder="2021-05-24" class="form-control input-md">
+  </div>
+</div>
+
+
 <!-- Button (Double) -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="button1id">Double Button</label>
@@ -63,6 +71,7 @@
     <button id="button2id" name="delete" class="btn btn-danger">Delete</button>
   </div>
 </div>
+
 
 </fieldset>
 </form>

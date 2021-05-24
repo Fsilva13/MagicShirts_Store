@@ -17,11 +17,11 @@ class EncomendasController extends Controller
 
    
    public function store(Request $request){
-   		$rules = ['estado'=> 'nullable',
-   		'notas' => 'nullable',
+   		$rules = [
    		'nif' => 'required|digits:9',
    		'endereco'=> 'required',
-   		'metpag' => 'required'
+   		'metpag' => 'required',
+   		'data' => 'required'
 
    	];
 
@@ -29,7 +29,8 @@ class EncomendasController extends Controller
 			 'nif.required' => 'É obrigatório ter um nif',
 			 'nif.digits' => 'O nif tem que ter 9 digitos',
 			 'endereco.required' => 'é obrigatório ter endereco',
-			 'metpag.required' => 'é obrigatorio '
+			 'metpag.required' => 'é obrigatorio ',
+			 'data.required' => 'insira a data'
 			 ];
 
    		$input = $request->validate($rules, $messages);
