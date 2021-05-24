@@ -8,16 +8,13 @@ use Illuminate\Http\Request;
 class EncomendasController extends Controller
 {
 
-/*    public function index()
+    public function index()
     {
         $encomenda = Encomenda::all();
 
        return view('encomenda.index', compact('encomenda'));
    }
-*/
-      public function create(){
-   		return view('encomenda.create');
-   }
+
    
    public function store(Request $request){
    		$rules = ['estado'=> 'nullable',
@@ -39,6 +36,11 @@ class EncomendasController extends Controller
  		$novaEncomenda = Encomenda::create($input);
 
  		
+   }
+
+    public function create(){
+   
+		return view('encomenda.create');
    }
 
 }
