@@ -7,7 +7,14 @@
   <fieldset>
 
     <!-- Form Name -->
-    <legend>ClientsForm</legend>
+    <legend>Clientes</legend>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <div class="col-md-4">
+        <input id="Id" name="Id" type="hidden" placeholder="" class="form-control input-md" required="" value="{{Auth::id()}}" readonly>        
+      </div>
+    </div>
 
     <!-- Text input-->
     <div class="form-group">
@@ -18,8 +25,7 @@
         <div class="error">
           {{$message}}
         </div>
-        @enderror
-        
+        @enderror        
       </div>
     </div>
 

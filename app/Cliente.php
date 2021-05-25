@@ -9,7 +9,7 @@ class Cliente extends Model
 	
 
 	protected $fillable = [
-       'NIF', 'endereco', 'tipo_pagamento', 'ref_pagamento',
+       'Id','NIF', 'endereco', 'tipo_pagamento', 'ref_pagamento',
     ];
 
     public function encomendas(){
