@@ -18,8 +18,6 @@ class ClientesController extends Controller
 
       public function store(Request $request){
 
-      	$id = Auth::id();
-
    		$rules = [
    		'Id' => 'required|numeric|unique:Clientes,Id',
   		'NIF' => 'required|digits:9|unique:Clientes,NIF',
