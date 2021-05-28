@@ -11,11 +11,9 @@ class EncomendasController extends Controller
     public function index()
     {
         $encomenda = Encomenda::all();
-
-       return view('encomenda.index', compact('encomenda'));
+       return view('encomenda.list', compact('encomenda'));
    }
-
-   
+ 
    public function store(Request $request){
    		$rules = [
    		'nif' => 'required|digits:9',
@@ -34,9 +32,11 @@ class EncomendasController extends Controller
 			 ];
 
    		$input = $request->validate($rules, $messages);
- 		$novaEncomenda = Encomenda::create($input);
+ 		$encomenda = Encomenda::create($input);
 
- 		
+ 		if($encomenda) {
+        return redirect()->route('encomenda.index');
+    }
    }
 
     public function create(){
@@ -44,4 +44,23 @@ class EncomendasController extends Controller
 		return view('encomenda.create');
    }
 
+	public function edit($id)
+	{
+	    $encomenda = Encomenda::findOrFail($id);
+	 
+	    if ($encomenda) {
+	        return view('encomenda.list', compact('encomenda'));
+	    } else {
+	        return redirect()->back();
+	    }
+	}
+
+	public function update(Request $request, $id)
+	{
+    $encomenda = Encomenda::where('id', $id)->update($request->except('_token', '_method'));
+ 
+    if ($encomenda) {
+        return redirect()->route('customers.list');
+    }
+	}
 }
