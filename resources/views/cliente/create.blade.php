@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('layouts.messages')
 
 @section('content')
 <form class="form-horizontal" method="post" action="{{ route('cliente.store') }}">

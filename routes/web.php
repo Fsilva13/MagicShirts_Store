@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');    //Retorna a pag. inicial do site.
-});
+})->name('welcome');
 
 
 Route::get('encomenda/create','EncomendasController@create')->name('encomenda.create');
@@ -26,6 +26,7 @@ Route::get('cliente/list','ClientesController@index')->name('cliente.list');
 Route::get('cliente/create','ClientesController@create')->name('cliente.create');
 Route::post('cliente/store','ClientesController@store')->name('cliente.store');
 Route::delete('cliente/destroy/{id}','ClientesController@destroy')->name('cliente.destroy');
+Route::put('cliente/edit/{id}','ClientesController@edit')->name('cliente.edit');
 
 Route::get('estampa/create','EstampasController@create')->name('estampa.create');
 Route::post('estampa/store','EstampasController@store')->name('estampa.store');
