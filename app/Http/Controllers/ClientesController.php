@@ -8,13 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ClientesController extends Controller
 {
-/*   
+  
     public function index()
     {
         $cliente = Cliente::all();
-       return view('Cliente.index', compact('cliente'));
-   }
-*/ 
+       return view('Cliente.list', compact('cliente'));
+   } 
 
       public function store(Request $request){
 
@@ -40,10 +39,20 @@ class ClientesController extends Controller
    		  $input = $request->validate($rules, $messages);
  		  $novoCliente = Cliente::create($input);
 
- 		
+ 	  return redirect()->route('home');	
    }
 
     public function create(){
    		return view('cliente.create');
    }
+
+   public function destroy($id)
+{
+    $cliente = Cliente::findOrFail($id);
+    $cliente->delete();
+       
+    
+    return redirect()->route('cliente.list');
+    
+}
 }
