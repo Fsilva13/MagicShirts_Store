@@ -2,13 +2,35 @@
 @include('layouts.messages')
 
 @section('content')
-<form class="form-horizontal" method="post" action="{{ route('cliente.store') }}">
-  @CSRF
+
+
+
+    @if(isset($cliente))
+ 
+        {!! Form::model($cliente, ['method' => 'put', 'route' => ['cliente.update', $cliente->id ], 'class' => 'form-horizontal']) !!}
+ 
+    @else
+ 
+        {!! Form::open(['method' => 'post','route' => 'cliente.store', 'class' => 'form-horizontal']) !!}
+ 
+    @endif
 
   <fieldset>
 
     <!-- Form Name -->
-    <legend>Clientes</legend>
+    <div class="col-md-4">
+      <div class="card-header">
+          <span class="card-title">
+            @if (isset($cliente))
+              Editar registro #{{ $cliente->id }}
+            @else
+              Criar novo registro
+            @endif
+          </span>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Text input-->
     <div class="form-group">
@@ -77,7 +99,11 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="submit"></label>
       <div class="col-md-8">
-        <button id="submit" name="submit" class="btn btn-success">Guardar</button>
+            @if (isset($cliente))
+              <button id="submit" name="submit" class="btn btn-success">Guardar</button>
+            @else
+              <button id="submit" name="submit" class="btn btn-success">Criar</button>
+            @endif
         <button id="cancel" name="cancel" class="btn btn-danger">Cancelar</button>
       </div>
     </div>

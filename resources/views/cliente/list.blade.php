@@ -41,5 +41,6 @@
       @endforelse
         </tbody>
     </table>
+    {{ $cliente->links() }}
 </div>
 @endsection

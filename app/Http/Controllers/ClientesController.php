@@ -15,7 +15,7 @@ class ClientesController extends Controller
   
     public function index()
     {
-        $cliente = Cliente::all();
+        $cliente = Cliente::paginate(15);
         $user = Cliente::with('user');
        return view('Cliente.list', compact('cliente'))->with('user',$user);
    } 
@@ -76,7 +76,7 @@ public function edit($id)
     $cliente = Cliente::findOrFail($id);
  
     if ($cliente) {
-        return view('cliente.edit', compact('cliente'));
+        return view('cliente.create', compact('cliente'));
     } else {
         return redirect()->back();
     }
