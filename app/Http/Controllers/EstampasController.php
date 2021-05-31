@@ -17,7 +17,7 @@ class EstampasController extends Controller
 
    public function store(Request $request){
 
-    if($request->hasFile('imagem')){}
+    if($request->hasFile('imagem')){
 
     $rules = [
         'nome'=> 'required',
@@ -34,24 +34,21 @@ class EstampasController extends Controller
 
     $request->file->store('estampas');
 
-    $estampa = new Estampa([
+   /* $estampa = new Estampa([
         "nome" => $request->get('nome'),
         "descricao" => $request->get('descricao'),
         "imagem_url" => $request->file->hashName()
 
     ]);
-       
-    //$novaEstampa = Estampa::create($input);
-
-
-
-
-
-  
-}
+     */  
+    $novaEstampa = Estampa::create($input);
+ 
+    }
+        }
 
 public function create(){
     return view('Estampa.index');
 }
+
 
 }
