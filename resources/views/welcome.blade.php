@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Magic Shirts</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
@@ -81,12 +81,14 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    MagicShirts Store
                 </div>
 
                 <div class="links">
                     <a href="{{ route('cliente.create') }}">Cliente</a>
+                    <a href="{{ route('cliente.list') }}">Listar Clientes</a>
                     <a href="{{ route('encomenda.create') }}">Encomenda</a>
+                    <a href="{{ route('encomenda.list') }}">Listar Encomendas</a>
                     <a href="{{ route('estampa.create') }}">Estapmpas</a>
 
                 </div>

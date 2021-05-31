@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 use App\Cliente;
+use App\User;
 
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\CustomerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ClientesController extends Controller
 {
-/*   
+  
     public function index()
     {
-        $cliente = Cliente::all();
-       return view('Cliente.index', compact('cliente'));
-   }
-*/ 
+        $cliente = Cliente::paginate(15);
+        $user = Cliente::with('user');
+       return view('Cliente.list', compact('cliente'))->with('user',$user);
+   } 
 
       public function store(Request $request){
 
@@ -40,10 +44,54 @@ class ClientesController extends Controller
    		  $input = $request->validate($rules, $messages);
  		  $novoCliente = Cliente::create($input);
 
- 		
+    if ($novoCliente) { 
+        Session::flash('success', "Registro #{$novoCliente->id}  salvo com êxito");
+ 
+        return redirect()->route('welcome');
+    }
+        return redirect()->back()->withErrors(['error', "Registo não foi salvo."]);
    }
+
 
     public function create(){
    		return view('cliente.create');
    }
+
+
+   public function destroy($id)
+{
+    $cliente = Cliente::where('id', $id)->delete();
+ 
+    if ($cliente) {
+   
+         Session::flash('success', "Registro #{$id} excluído com êxito");
+   
+         return redirect()->route('cliente.list');
+    } 
+    return redirect()->back()->withErrors(['error', "Registo #{$id} não pode ser excluído"]);
+}
+
+public function edit($id)
+{
+    $cliente = Cliente::findOrFail($id);
+ 
+    if ($cliente) {
+        return view('cliente.create', compact('cliente'));
+    } else {
+        return redirect()->back();
+    }
+}
+
+public function update(ClientRequest $request, $id)
+{
+    $cliente = Cliente::where('id', $id)->update($request->except('_token', '_method'));
+ 
+    if ($cliente) {
+   
+  Session::flash('success', "Registro #{$id} atualizado com êxito");
+   
+  return redirect()->route('cliente.list');
+    }
+    return redirect()->back()->withErrors(['error', "Registo #{$id} não foi encontrado"]);
+}
 }
