@@ -18,7 +18,7 @@ class EncomendasController extends Controller
    		$rules = [
    		'nif' => 'required|digits:9',
    		'endereco'=> 'required',
-   		'metpag' => 'required',
+   		'tipo_pagamento' => 'required',
    		'data' => 'required'
 
    	];
@@ -27,7 +27,7 @@ class EncomendasController extends Controller
 			 'nif.required' => 'É obrigatório ter um nif',
 			 'nif.digits' => 'O nif tem que ter 9 digitos',
 			 'endereco.required' => 'é obrigatório ter endereco',
-			 'metpag.required' => 'é obrigatorio ',
+			 'tipo_pagamento.required' => 'é obrigatorio ',
 			 'data.required' => 'insira a data'
 			 ];
 
