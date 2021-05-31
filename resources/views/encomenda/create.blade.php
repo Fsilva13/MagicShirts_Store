@@ -5,19 +5,6 @@
 
     <legend>Encomendas</legend>
 
-<div class="form-group">
-      <label class="col-md-4 control-label" for="cliente_id">Cliente</label>  
-      <div class="col-md-4">
-        <input id="cliente_id" name="cliente_id" type="text" placeholder="" class="form-control input-md"  value="{{old('cliente_id')}}">
-        @error('ref_pagamento')
-        <div class="error">
-          {{$message}}
-        </div>
-        @enderror
-        
-      </div>
-    </div>
-
 
     <div class="form-group">
       <label class="col-md-4 control-label" for="estado">Estado</label>
@@ -28,6 +15,71 @@
           <option value="Fechada">Fechada</option>
           <option value="Anulada">Anulada</option>
         </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="cliente_id">Cliente</label>  
+      <div class="col-md-4">
+        <input id="cliente_id" name="cliente_id" type="text" placeholder="" class="form-control input-md"  value="{{old('cliente_id')}}">
+        @error('cliente_id')
+        <div class="error">
+          {{$message}}
+        </div>
+        @enderror
+        
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="data">Data</label>
+      <div class="col-md-4">                     
+       <input type="date" name="data" id="data" placeholder="2021-05-24" class="form-control input-md" value="{{old('data')}}">
+       @error('data')
+        <div class="error">
+          {{$message}}
+        </div>
+        @enderror
+     </div>
+   </div>
+
+   <div class="form-group">
+      <label class="col-md-4 control-label" for="preco_total">Preço</label>  
+      <div class="col-md-4">
+        <input id="preco_total" name="preco_total" type="number" placeholder="" class="form-control input-md"  value="{{old('preco_total')}}">
+        @error('preco_total')
+        <div class="error">
+          {{$message}}
+        </div>
+        @enderror
+        
+      </div>
+    </div>
+
+     <div class="form-group">
+      <label class="col-md-4 control-label" for="notas">Notas</label>
+      <div class="col-md-4">                     
+        <input type="text" class="form-control" id="notas" name="notas"></input>
+        @error('notas')
+        <div class="error">
+          {{$message}}
+        </div>
+        @enderror
+      </div>
+    </div>
+
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="NIF">NIF</label>  
+      <div class="col-md-4">
+        <input id="nif" name="nif" type="text" placeholder="" class="form-control input-md"  value="{{old('nif')}}">
+        @error('nif')
+        <div class="error">
+          {{$message}}
+        </div>
+        @enderror
+        
       </div>
     </div>
 
@@ -44,47 +96,7 @@
       </div>
     </div>
 
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="NIF">NIF</label>  
-      <div class="col-md-4">
-        <input id="NIF" name="NIF" type="text" placeholder="" class="form-control input-md"  value="{{old('NIF')}}">
-        @error('NIF')
-        <div class="error">
-          {{$message}}
-        </div>
-        @enderror
-        
-      </div>
-    </div>
 
-<div class="form-group">
-      <label class="col-md-4 control-label" for="preco_total">Preço</label>  
-      <div class="col-md-4">
-        <input id="preco_total" name="preco_total" type="number" placeholder="" class="form-control input-md"  value="{{old('preco_total')}}">
-        @error('preco_total')
-        <div class="error">
-          {{$message}}
-        </div>
-        @enderror
-        
-      </div>
-    </div>
-
-
-
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="ref_pagamento">Referencia</label>  
-      <div class="col-md-4">
-        <input id="ref_pagamento" name="ref_pagamento" type="text" placeholder="" class="form-control input-md"  value="{{old('ref_pagamento')}}">
-        @error('ref_pagamento')
-        <div class="error">
-          {{$message}}
-        </div>
-        @enderror
-        
-      </div>
-    </div>
     <!-- Select Basic -->
     <div class="form-group">
       <label class="col-md-4 control-label" for="tipo_pagamento">Tipo de Pagamento</label>
@@ -102,30 +114,19 @@
       </div>
     </div>
 
-    <!-- Textarea -->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="notas">Notas</label>
-      <div class="col-md-4">                     
-        <input type="text" class="form-control" id="notas" name="notas"></input>
-        @error('notas')
+ <div class="form-group">
+      <label class="col-md-4 control-label" for="ref_pagamento">Referencia</label>  
+      <div class="col-md-4">
+        <input id="ref_pagamento" name="ref_pagamento" type="text" placeholder="" class="form-control input-md"  value="{{old('ref_pagamento')}}">
+        @error('ref_pagamento')
         <div class="error">
           {{$message}}
         </div>
         @enderror
+        
       </div>
     </div>
-
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="data">Data</label>
-      <div class="col-md-4">                     
-       <input type="date" name="data" id="data" placeholder="2021-05-24" class="form-control input-md" value="{{old('data')}}">
-       @error('data')
-        <div class="error">
-          {{$message}}
-        </div>
-        @enderror
-     </div>
-   </div>
+    
 
 
    <!-- Button (Double) -->
