@@ -43,7 +43,7 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="NIF">NIF</label>  
       <div class="col-md-4">
-        <input id="NIF" name="NIF" type="text" placeholder="" class="form-control input-md" required="" value="{{old('NIF')}}">
+        <input id="NIF" name="NIF" type="text" placeholder="" class="form-control input-md" required="" value="{{ old('NIF') ?? $cliente->nif ?? '' }}" > 
         @error('NIF')
         <div class="error">
           {{$message}}
@@ -56,7 +56,7 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="endereco">Endereço</label>  
       <div class="col-md-4">
-        <input id="endereco" name="endereco" type="text" placeholder="" class="form-control input-md" required="" value="{{old('endereco')}}">
+        <input id="endereco" name="endereco" type="text" placeholder="" class="form-control input-md" required="" value="{{old('endereco') ?? $cliente->endereco ?? ''}}">
         @error('endereco')
         <div class="error">
           {{$message}}
@@ -86,7 +86,7 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="ref_pagamento">Ref. Pagamento</label>  
       <div class="col-md-4">
-        <input id="ref_pagamento" name="ref_pagamento" type="text" placeholder="" class="form-control input-md" value="{{old('ref_pagamento')}}">
+        <input id="ref_pagamento" name="ref_pagamento" type="text" placeholder="" class="form-control input-md" value="{{old('ref_pagamento')  ?? $cliente->ref_pagamento ?? ''}}">
         @error('ref_pagamento')
         <div class="error">
           {{$message}}
@@ -104,7 +104,7 @@
             @else
               <button id="submit" name="submit" class="btn btn-success">Criar</button>
             @endif
-        <button id="cancel" name="cancel" class="btn btn-danger">Cancelar</button>
+        <button id="cancel" name="cancel" class="btn btn-danger" onclick= >Cancelar</button>
       </div>
     </div>
 
