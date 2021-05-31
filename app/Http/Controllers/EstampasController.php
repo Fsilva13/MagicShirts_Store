@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Estampa;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EstampasController extends Controller
 {
@@ -15,16 +16,36 @@ class EstampasController extends Controller
    }*/
 
    public function store(Request $request){
-    $rules = ['nome'=> 'required',
-    'descricao' => 'nullable'
-];
 
-$messages = [
+    if($request->hasFile('imagem')){}
+
+    $rules = [
+        'nome'=> 'required',
+        'descricao' => 'nullable',
+        'imagem' => 'mimes:jpeg,png,gif'
+    ];
+
+    $messages = [
       'nome.required' => 'É obrigatório ter um nome',
+      'imagem.required' => 'Ficheiro inválido ou não selecionado'
       ];
 
     $input = $request->validate($rules, $messages);
-  $novaEstampa = Estampa::create($input);
+
+    $request->file->store('estampas');
+
+    $estampa = new Estampa([
+        "nome" => $request->get('nome'),
+        "descricao" => $request->get('descricao'),
+        "imagem_url" => $request->file->hashName()
+
+    ]);
+       
+    //$novaEstampa = Estampa::create($input);
+
+
+
+
 
   
 }
@@ -32,4 +53,5 @@ $messages = [
 public function create(){
     return view('Estampa.index');
 }
+
 }

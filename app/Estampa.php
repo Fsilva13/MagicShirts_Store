@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Estampa extends Model
 {
 	protected $fillable = [
-        'nome', 'descricao'
+        'nome', 'descricao', 'imagem_url'
     ];
 
 	public function categoria(){
@@ -20,4 +20,5 @@ class Estampa extends Model
 	public function tshirts(){
 		return $this->hasMany('App\Tshirt');
 	}
+	
 }
