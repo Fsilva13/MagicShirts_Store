@@ -6,7 +6,6 @@ use App\User;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\CustomerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -82,9 +81,9 @@ public function edit($id)
     }
 }
 
-public function update(ClientRequest $request, $id)
+public function update(Request $request, $id)
 {
-    $cliente = Cliente::where('id', $id)->update($request->except('_token', '_method'));
+    $cliente = Cliente::find($id)->update($request->except('_token', '_method'));
  
     if ($cliente) {
    
