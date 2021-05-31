@@ -33,12 +33,19 @@
 
 
     <!-- Text input-->
+    @if (isset($cliente))
     <div class="form-group">
       <div class="col-md-4">
-        <input id="Id" name="Id" type="hidden" placeholder="" class="form-control input-md" required="" value="{{Auth::id()}}" readonly>        
+        <input id="Id" name="Id" type="hidden" placeholder="" class="form-control input-md" required="" value="{{ old('id') ?? $cliente->id ?? '' }}" readonly>        
       </div>
     </div>
-
+    @else
+        <div class="form-group">
+        <div class="col-md-4">
+        <input id="Id" name="Id" type="hidden" placeholder="" class="form-control input-md" required="" value=" {{Auth::id()}}" readonly>        
+      </div>
+    </div>
+    @endif
     <!-- Text input-->
     <div class="form-group">
       <label class="col-md-4 control-label" for="NIF">NIF</label>  
@@ -70,9 +77,15 @@
   <label class="col-md-4 control-label" for="tipo_pagamento">Tipo de Pagamento</label>
   <div class="col-md-4">
     <select id="tipo_pagamento" name="tipo_pagamento" class="form-control">
-      <option value="VISA" {{old('tipo_pagamento')}} == {{ 'VISA'? 'Selected' : ''}}>VISA</option>
-      <option value="MC"{{old('tipo_pagamento')}} == {{'MC'? 'Selected' : ''}}>MC</option>
-      <option value="PAYPAL"{{old('tipo_pagamento')}} == {{ 'PAYPAL'? 'Selected' : ''}}>PAYPAL</option>
+      @if (isset($cliente))
+          @foreach(["VISA" => "VISA", "MC" => "MC", "PAYPAL" => "PAYPAL"] AS $tipo_pagamento => $clienteLabel)    
+          <option value="{{ $tipo_pagamento }}" {{ old("tipo_pagamento", $cliente->tipo_pagamento) == $tipo_pagamento ? "selected" : "" }}>{{ $clienteLabel }}</option>
+          @endforeach
+      @else
+          <option value="VISA" {{old('tipo_pagamento')}} == {{ 'VISA'? 'Selected' : ''}}>VISA</option>
+          <option value="MC"{{old('tipo_pagamento')}} == {{'MC'? 'Selected' : ''}}>MC</option>
+          <option value="PAYPAL"{{old('tipo_pagamento')}} == {{ 'PAYPAL'? 'Selected' : ''}}>PAYPAL</option>
+      @endif
     </select>
     @error('tipo_pagamento')
     <div class="error">
@@ -104,10 +117,11 @@
             @else
               <button id="submit" name="submit" class="btn btn-success">Criar</button>
             @endif
-        <button id="cancel" name="cancel" class="btn btn-danger" onclick= >Cancelar</button>
+              <button id="cancel" name="cancel" class="btn btn-danger" onclick= >Cancelar</button>
       </div>
     </div>
 
-  </fieldset>
-</form>
+ </form>
+</fieldset> 
+
 @endsection
