@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Cliente;
 use App\User;
+use App\Encomenda;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -59,7 +60,16 @@ class ClientesController extends Controller
 
    public function destroy($id)
 {
-    $cliente = Cliente::where('id', $id)->delete();
+
+    foreach ($encomenda as $enc) { 
+
+        $EncomendaAns = Encomenda::where('cliente_id',$enc->id)->get()->first();
+
+         $EncomendaAns->delete();
+
+     } //->where('is_complete',1) $users->delete();
+
+    $cliente = Cliente::find($id)->delete();;
  
     if ($cliente) {
    
