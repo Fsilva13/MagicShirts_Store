@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Encomenda extends Model
 {
 
-	protected $fillable = [
-        'estado', 'notas', 'nif','endereco','metpag',
+	protected $fillable = ['id','estado','cliente_id','data',
+	'preco_total','notas','nif','endereco','tipo_pagamento','ref_pagamento'
     ];
 
     public function clientes(){

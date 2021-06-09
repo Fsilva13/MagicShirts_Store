@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 use App\Cliente;
 use App\User;
+use App\Encomenda;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\CustomerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -60,7 +60,16 @@ class ClientesController extends Controller
 
    public function destroy($id)
 {
-    $cliente = Cliente::where('id', $id)->delete();
+
+    foreach ($encomenda as $enc) { 
+
+        $EncomendaAns = Encomenda::where('cliente_id',$enc->id)->get()->first();
+
+         $EncomendaAns->delete();
+
+     } //->where('is_complete',1) $users->delete();
+
+    $cliente = Cliente::find($id)->delete();;
  
     if ($cliente) {
    
@@ -82,9 +91,9 @@ public function edit($id)
     }
 }
 
-public function update(ClientRequest $request, $id)
+public function update(Request $request, $id)
 {
-    $cliente = Cliente::where('id', $id)->update($request->except('_token', '_method'));
+    $cliente = Cliente::find($id)->update($request->except('_token', '_method'));
  
     if ($cliente) {
    

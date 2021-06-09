@@ -15,27 +15,25 @@ class EncomendasController extends Controller
    }
  
    public function store(Request $request){
-   		$rules = [
-   		'nif' => 'required|digits:9',
-   		'endereco'=> 'required',
-   		'metpag' => 'required',
-   		'data' => 'required'
-
+   		$rules = ['estado' => 'required','cliente_id' => 'required',
+      'data' => 'required', 'preco_total'=> 'required', 'notas'=> 'required',
+      'nif' => 'required', 'endereco' => 'required', 'tipo_pagamento'=> 'required',
+      'ref_pagamento' => 'required'
    	];
 
    	$messages = [
 			 'nif.required' => 'É obrigatório ter um nif',
 			 'nif.digits' => 'O nif tem que ter 9 digitos',
 			 'endereco.required' => 'é obrigatório ter endereco',
-			 'metpag.required' => 'é obrigatorio ',
+			 'tipo_pagamento.required' => 'é obrigatorio ',
 			 'data.required' => 'insira a data'
 			 ];
-
+    
    		$input = $request->validate($rules, $messages);
- 		$encomenda = Encomenda::create($input);
+ 		  $encomenda = Encomenda::create($input);
 
  		if($encomenda) {
-        return redirect()->route('encomenda.index');
+        return redirect()->route('welcome');
     }
    }
 
@@ -57,7 +55,7 @@ class EncomendasController extends Controller
 
 	public function update(Request $request, $id)
 	{
-    $encomenda = Encomenda::where('id', $id)->update($request->except('_token', '_method'));
+    $encomenda = Encomenda::find($id)->update($request->except('_token', '_method'));
  
     if ($encomenda) {
         return redirect()->route('customers.list');
