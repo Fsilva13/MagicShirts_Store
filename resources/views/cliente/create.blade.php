@@ -4,7 +4,6 @@
 @section('content')
 
 
-
     @if(isset($cliente))
  
         {!! Form::model($cliente, ['method' => 'put', 'route' => ['cliente.update', $cliente->id ], 'class' => 'form-horizontal']) !!}
@@ -15,6 +14,7 @@
  
     @endif
 
+    @CSRF
   <fieldset>
 
     <!-- Form Name -->

@@ -1,5 +1,6 @@
-@extends('layout.app')
-@section('title', 'Listando todos os registros')
+@extends('layouts.app')
+@include('layouts.messages')
+@section('title', 'Listar todos os registros')
  
 @section('content')
 <h1>Listagem de Ecomendas</h1>
@@ -13,22 +14,20 @@
           <th>Sobrenome</th>
           <th>email</th>
           <th>telefone</th>
-          <th>
-        <a href="{{ route('customers.create') }}" class="btn btn-info btn-sm" >Novo</a>
           </th>
       </tr>
         </thead>
         <tbody>
-      @forelse($customers as $customer)
+      @forelse($encomenda as $enc)
       <tr>
-          <td>{{ $customer->id }}</td>
-          <td>{{ $customer->first_name }}</td>
-          <td>{{ $customer->last_name }}</td>
-          <td>{{ $customer->email }}</td>
-          <td>{{ $customer->phone }}</td>
+          <td>{{ $enc->id }}</td>
+          <td>{{ $enc->first_name }}</td>
+          <td>{{ $enc->last_name }}</td>
+          <td>{{ $enc->email }}</td>
+          <td>{{ $enc->phone }}</td>
           <td>
-        <a href="{{ route('customers.edit', ['id' => $customer->id]) }}" class="btn btn-warning btn-sm">Editar</a>
-        <form method="POST" action="{{ route('customers.destroy', ['id' => $customer->id]) }}" style="display: inline" onsubmit="return confirm('Deseja excluir este registro?');" >
+        <a href="{{ route('encomenda.edit', ['id' => $enc->id]) }}" class="btn btn-warning btn-sm">Editar</a>
+        <form method="POST" action="{{ route('encomenda.destroy', ['id' => $enc->id]) }}" style="display: inline" onsubmit="return confirm('Deseja excluir este registro?');" >
             @csrf
             <input type="hidden" name="_method" value="delete" >
             <button class="btn btn-danger btn-sm">Excluir</button>
@@ -42,5 +41,6 @@
       @endforelse
         </tbody>
     </table>
+    {{ $cliente->links() }}
 </div>
 @endsection

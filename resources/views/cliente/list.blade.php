@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @include('layouts.messages')
-@section('title', 'Listando todos os registros')
+@section('title', 'Listar todos os registros')
  
 @section('content')
 <h1>Listagem de Clientes</h1>
