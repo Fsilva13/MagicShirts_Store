@@ -104,7 +104,7 @@
             @else
               <button id="submit" name="submit" class="btn btn-success">Criar</button>
             @endif
-        <button id="cancel" name="cancel" class="btn btn-danger">Cancelar</button>
+              <button id="cancel" name="cancel" class="btn btn-danger" onclick="welcome">Cancelar</button>
       </div>
     </div>
 
