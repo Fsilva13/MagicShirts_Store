@@ -104,7 +104,7 @@
             @else
               <button id="submit" name="submit" class="btn btn-success">Criar</button>
             @endif
-              <button id="cancel" name="cancel" class="btn btn-danger" href="{{ route('welcome') }}">Cancelar</button>
+              <a href="{{url()->previous()}}" class="btn btn-danger">Cancel</a>
       </div>
     </div>
 
