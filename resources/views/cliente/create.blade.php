@@ -119,7 +119,6 @@
             @endif
               <a href="{{url()->previous()}}" class="btn btn-danger">Cancelar</a>
 
-
       </div>
     </div>
 
