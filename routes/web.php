@@ -17,10 +17,12 @@ Route::get('/', function () {
     return view('welcome');    //Retorna a pag. inicial do site.
 })->name('welcome');
 
-
+Route::get('encomenda/list','EncomendasController@index')->name('encomenda.list');
 Route::get('encomenda/create','EncomendasController@create')->name('encomenda.create');
 Route::post('encomenda/store','EncomendasController@store')->name('encomenda.store');
-Route::get('encomenda/list','EncomendasController@index')->name('encomenda.list');
+Route::delete('encomenda/destroy/{id}','EncomendasController@destroy')->name('encomenda.destroy');
+Route::get('encomenda/edit/{id}','EncomendasController@edit')->name('encomenda.edit');
+Route::put('encomenda/update/{id}','EncomendasController@update')->name('encomenda.update');
 
 Route::get('cliente/list','ClientesController@index')->name('cliente.list');
 Route::get('cliente/create','ClientesController@create')->name('cliente.create');
