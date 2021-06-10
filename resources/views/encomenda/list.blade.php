@@ -32,6 +32,7 @@
           <td>{{ $enc->notas }}</td>
           <td>{{ $enc->nif }}</td>
           <td>{{ $enc->cliente->nif }}</td>
+          <td>{{ $enc->nif }}</td>
           <td>{{ $enc->endereco }}</td>
           <td>{{ $enc->tipo_pagamento }}</td>
           <td>{{ $enc->ref_pagamento }}</td>
@@ -51,6 +52,6 @@
       @endforelse
         </tbody>
     </table>
-    {{ $cliente->links() }}
+    {{ $encomenda->links() }}
 </div>
 @endsection
