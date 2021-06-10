@@ -173,7 +173,7 @@
 
    <!-- Button (Double) -->
    <div class="form-group">
-    <label class="col-md-4 control-label" for="button1id">Double Button</label>
+    <label class="col-md-4 control-label" for="button1id"></label>
     <div class="col-md-8">
       @if (isset($encomenda))
               <button id="submit" name="submit" class="btn btn-success">Guardar</button>
@@ -187,3 +187,4 @@
 
 </fieldset>
 </form>
+@endsection
