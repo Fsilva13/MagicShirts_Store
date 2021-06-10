@@ -31,7 +31,6 @@
           <td>{{ $enc->preco_total}}</td>
           <td>{{ $enc->notas }}</td>
           <td>{{ $enc->nif }}</td>
-          <td>{{ $enc->cliente->nif }}</td>
           <td>{{ $enc->nif }}</td>
           <td>{{ $enc->endereco }}</td>
           <td>{{ $enc->tipo_pagamento }}</td>
