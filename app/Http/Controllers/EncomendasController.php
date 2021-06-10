@@ -53,7 +53,7 @@ class EncomendasController extends Controller
 	    $encomenda = Encomenda::findOrFail($id);
 	 
 	    if ($encomenda) {
-	        return view('encomenda.list', compact('encomenda'));
+	        return view('encomenda.create', compact('encomenda'));
 	    } else {
 	        return redirect()->back();
 	    }

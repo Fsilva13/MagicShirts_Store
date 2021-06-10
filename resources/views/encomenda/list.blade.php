@@ -27,7 +27,7 @@
       <tr>
           <td>{{ $enc->id }}</td>
           <td>{{ $enc->estado }}</td>
-          <td>{{ $enc->clientes}}</td>
+          <td>{{ $enc->cliente_id}}</td>
           <td>{{ $enc->data }}</td>
           <td>{{ $enc->preco_total}}</td>
           <td>{{ $enc->notas }}</td>

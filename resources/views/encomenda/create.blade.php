@@ -36,7 +36,7 @@
       <div class="col-md-4">
       <select id="estado" name="estado" class="form-control">
           @if (isset($encomenda))
-          @foreach(["Pendente" => "Pendente", "Paga" => "Paga", "Fechada" => "Fechada" , "Anulada" => "Anulada"] AS $estado => $encomendaLabel)    
+          @foreach(["pendente" => "Pendente", "paga" => "Paga", "fechada" => "Fechada" , "anulada" => "Anulada"] AS $estado => $encomendaLabel)    
           <option value="{{ $estado }}" {{ old("estado", $encomenda->estado) == $estado ? "selected" : "" }}>{{ $encomendaLabel }}</option>
           @endforeach
           @else
@@ -95,7 +95,7 @@
      <div class="form-group">
       <label class="col-md-4 control-label" for="notas">Notas</label>
       <div class="col-md-4">                     
-        <input type="text" class="form-control" id="notas" name="notas"></input>
+        <input type="text" class="form-control" id="notas" name="notas" value="{{old('preco_total') ?? $encomenda->notas ?? '' }}">
         @error('notas')
         <div class="error">
           {{$message}}
@@ -139,7 +139,7 @@
       <div class="col-md-4">
         <select id="tipo_pagamento" name="tipo_pagamento" class="form-control">
           @if (isset($encomenda))
-          @foreach(["VISA" => "VISA", "MC" => "MC", "PAYPAL" => "PAYPAL"] AS $tipo_pagamento => $encLabel)    
+          @foreach(["VISA" => "VISA", "MC" => "Multibanco", "PAYPAL" => "PAYPAL"] AS $tipo_pagamento => $encLabel)    
           <option value="{{ $tipo_pagamento }}" {{ old("tipo_pagamento", $encomenda->tipo_pagamento) == $tipo_pagamento ? "selected" : "" }}>{{ $encLabel }}</option>
           @endforeach
           @else
