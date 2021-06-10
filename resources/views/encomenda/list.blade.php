@@ -10,10 +10,15 @@
         <thead>
       <tr>
           <th>#</th>
-          <th>Nome</th>
-          <th>Sobrenome</th>
-          <th>email</th>
-          <th>telefone</th>
+          <th>Estado</th>
+          <th>Cliente</th>
+          <th>Data</th>
+          <th>Preço Total</th>
+          <th>Notas</th>
+          <th>Nif</th>
+          <th>Endereço</th>
+          <th>Tipo de Pagamento</th>
+          <th>Ref. Pagamento</th>
           </th>
       </tr>
         </thead>
@@ -21,10 +26,15 @@
       @forelse($encomenda as $enc)
       <tr>
           <td>{{ $enc->id }}</td>
-          <td>{{ $enc->first_name }}</td>
-          <td>{{ $enc->last_name }}</td>
-          <td>{{ $enc->email }}</td>
-          <td>{{ $enc->phone }}</td>
+          <td>{{ $enc->cliente->id }}</td>
+          <td>{{ $enc->data }}</td>
+          <td>{{ $enc->preco_total}}</td>
+          <td>{{ $enc->notas }}</td>
+          <td>{{ $enc->nif }}</td>
+          <td>{{ $enc->cliente->nif }}</td>
+          <td>{{ $enc->endereco }}</td>
+          <td>{{ $enc->tipo_pagamento }}</td>
+          <td>{{ $enc->ref_pagamento }}</td>
           <td>
         <a href="{{ route('encomenda.edit', ['id' => $enc->id]) }}" class="btn btn-warning btn-sm">Editar</a>
         <form method="POST" action="{{ route('encomenda.destroy', ['id' => $enc->id]) }}" style="display: inline" onsubmit="return confirm('Deseja excluir este registro?');" >
