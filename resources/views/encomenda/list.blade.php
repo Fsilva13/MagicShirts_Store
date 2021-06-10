@@ -26,11 +26,11 @@
       @forelse($encomenda as $enc)
       <tr>
           <td>{{ $enc->id }}</td>
+          <td>{{ $enc->estado }}</td>
           <td>{{ $enc->clientes}}</td>
           <td>{{ $enc->data }}</td>
           <td>{{ $enc->preco_total}}</td>
           <td>{{ $enc->notas }}</td>
-          <td>{{ $enc->nif }}</td>
           <td>{{ $enc->nif }}</td>
           <td>{{ $enc->endereco }}</td>
           <td>{{ $enc->tipo_pagamento }}</td>
