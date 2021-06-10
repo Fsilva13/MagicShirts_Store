@@ -26,7 +26,7 @@
       @forelse($encomenda as $enc)
       <tr>
           <td>{{ $enc->id }}</td>
-          <td>{{ $enc->cliente->id }}</td>
+          <td>{{ $enc->clientes}}</td>
           <td>{{ $enc->data }}</td>
           <td>{{ $enc->preco_total}}</td>
           <td>{{ $enc->notas }}</td>

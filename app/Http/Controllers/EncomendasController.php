@@ -15,8 +15,8 @@ class EncomendasController extends Controller
     public function index()
     {
         $encomenda = Encomenda::paginate(15);
-		$cliente = Encomenda::with('cliente');
-		return view('Encomenda.list', compact('encomenda'))->with('cliente',$cliente);
+		$clientes = Encomenda::with('clientes');
+		return view('Encomenda.list', compact('encomenda'))->with('clientes',$clientes);
    }
  
    public function store(Request $request){
