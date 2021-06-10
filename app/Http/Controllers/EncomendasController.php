@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 use App\Encomenda;
+use App\Cliente;
 
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EncomendasController extends Controller
 {
 
     public function index()
     {
-        $encomenda = Encomenda::all();
-       return view('encomenda.list', compact('encomenda'));
+        $encomenda = Encomenda::paginate(15);
+		$cliente = Encomenda::with('cliente');
+		return view('Encomenda.list', compact('encomenda'))->with('cliente',$cliente);
    }
  
    public function store(Request $request){
@@ -29,16 +34,17 @@ class EncomendasController extends Controller
 			 'data.required' => 'insira a data'
 			 ];
     
-   		$input = $request->validate($rules, $messages);
- 		  $encomenda = Encomenda::create($input);
+   			$input = $request->validate($rules, $messages);
+ 		  	$encomenda = Encomenda::create($input);
 
- 		if($encomenda) {
+ 	if($encomenda) {
+		Session::flash('success', "Registro #{$novoCliente->id}  salvo com êxito");
         return redirect()->route('welcome');
     }
+		return redirect()->back()->withErrors(['error', "Registo não foi salvo."]);
    }
 
-    public function create(){
-   
+    public function create(){   
 		return view('encomenda.create');
    }
 
@@ -55,10 +61,25 @@ class EncomendasController extends Controller
 
 	public function update(Request $request, $id)
 	{
-    $encomenda = Encomenda::find($id)->update($request->except('_token', '_method'));
- 
-    if ($encomenda) {
-        return redirect()->route('customers.list');
-    }
+		$encomenda = Encomenda::find($id)->update($request->except('_token', '_method'));
+	 
+		if ($encomenda) {	   
+	  		Session::flash('success', "Registro #{$id} atualizado com êxito");
+	   
+	  		return redirect()->route('encomenda.list');
+		}
+			return redirect()->back()->withErrors(['error', "Registo #{$id} não foi encontrado"]);
+	}
+
+	public function destroy($id)
+	{
+		//TODO
+		if ($cliente) {
+   
+			Session::flash('success', "Registro #{$id} excluído com êxito");
+	  
+			return redirect()->route('cliente.list');
+	   } 
+	   return redirect()->back()->withErrors(['error', "Registo #{$id} não pode ser excluído"]);
 	}
 }
