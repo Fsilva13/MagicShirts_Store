@@ -9,7 +9,7 @@ class TshirtsController extends Controller
 {
     public function index()
     {
-        $tshirt = Tshirt::paginate(10);
+        $tshirt = Tshirt::paginate(5);
 
        return view('Tshirt.list', compact('tshirt'));
    }

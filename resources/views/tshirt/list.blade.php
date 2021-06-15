@@ -3,7 +3,9 @@
 @section('title', 'Listar todos os registros')
  
 @section('content')
-<h1>Listagem de Ecomendas</h1>
+<div>
+  <h1> MagicShirts Store</h1>
+</div>
 <hr>
 <div class="container">
     <table class="table table-bordered table-striped table-sm">
