@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ Route::put('cliente/update/{id}','ClientesController@update')->name('cliente.upd
 Route::get('estampa/create','EstampasController@create')->name('estampa.create');
 Route::post('estampa/store','EstampasController@store')->name('estampa.store');
 
-Route::get('tshirt/list','EncomendasController@index')->name('tshirt.list');
+Route::get('tshirt/list','TshirtsController@index')->name('tshirt.list');
 
 
 
