@@ -15,5 +15,4 @@ class Tshirt extends Model
 	public function cor(){
 		return $this->belongsTo('App\Cor');
 	}
-	//cenas
 }

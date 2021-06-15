@@ -34,7 +34,7 @@ Route::put('cliente/update/{id}','ClientesController@update')->name('cliente.upd
 Route::get('estampa/create','EstampasController@create')->name('estampa.create');
 Route::post('estampa/store','EstampasController@store')->name('estampa.store');
 
-
+Route::get('tshirt/list','EncomendasController@index')->name('tshirt.list');
 
 
 

@@ -85,6 +85,7 @@
                 </div>
 
                 <div class="links">
+                    <a href="{{ route('tshirt.list') }}">Tshirt</a>
                     <a href="{{ route('cliente.create') }}">Cliente</a>
                     <a href="{{ route('cliente.list') }}">Listar Clientes</a>
                     <a href="{{ route('encomenda.create') }}">Encomenda</a>
