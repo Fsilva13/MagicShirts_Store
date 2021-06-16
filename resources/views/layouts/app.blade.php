@@ -36,10 +36,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <div class="links">
-                            <a href="{{ route('encomenda.list') }}"> Listar Encomendas </a>
-                            <a href="{{ route('encomenda.list') }}"> Listar Encomendas </a>
-                        </div>
                     </ul>
 
 
@@ -66,7 +62,10 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
+                                @if (Auth::user() == Auth::user()->cliente())
+                                <a href="{{ route('cliente.edit', ['id' => Auth::id()]) }}"
+                                    class="dropdown-item">Editar</a>
+                                @endif
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 
                                     @csrf
@@ -76,7 +75,9 @@
                         @endguest
                     </ul>
                     <!-- MINI-CART -->
-                    <a class="show-mini-cart" href="#">Carrinho</a>
+                    @if (Auth::check())
+                    <a class="show-mini-cart" href="{{ route('carrinho.index') }}">Carrinho</a>
+                    @endif
                     <!-- END MINI-CART -->
                 </div>
             </div>
@@ -87,7 +88,7 @@
         @yield('content')
     </main>
     </div>
-    
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

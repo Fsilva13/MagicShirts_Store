@@ -37,7 +37,8 @@ Route::put('cliente/update/{id}','ClientesController@update')->name('cliente.upd
 Route::get('estampa/create','EstampasController@create')->name('estampa.create');
 Route::post('estampa/store','EstampasController@store')->name('estampa.store');
 
-
+//Carrinho
+Route::get('carrinho/cart','CarrinhoController@index')->name('carrinho.index');
 
 Auth::routes();
 
