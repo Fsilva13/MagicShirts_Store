@@ -47,7 +47,7 @@ class ClientesController extends Controller
     if ($novoCliente) { 
         Session::flash('success', "Registro #{$novoCliente->id}  salvo com êxito");
  
-        return redirect()->route('welcome');
+        return redirect()->route('tshirt.list');
     }
         return redirect()->back()->withErrors(['error', "Registo não foi salvo."]);
    }
@@ -60,16 +60,16 @@ class ClientesController extends Controller
 
    public function destroy($id)
 {
-
+    //TODO
     foreach ($encomenda as $enc) { 
 
         $EncomendaAns = Encomenda::where('cliente_id',$enc->id)->get()->first();
 
          $EncomendaAns->delete();
 
-     } //->where('is_complete',1) $users->delete();
+     }
 
-    $cliente = Cliente::find($id)->delete();;
+    $cliente = Cliente::find($id)->delete();
  
     if ($cliente) {
    

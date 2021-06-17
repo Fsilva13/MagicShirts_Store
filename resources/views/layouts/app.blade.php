@@ -62,7 +62,7 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-                                @if (Auth::user() == Auth::user()->cliente())
+                                @if (Auth::user()->cliente)
                                 <a href="{{ route('cliente.edit', ['id' => Auth::id()]) }}"
                                     class="dropdown-item">Editar</a>
                                 @endif
@@ -76,7 +76,11 @@
                     </ul>
                     <!-- MINI-CART -->
                     @if (Auth::check())
-                    <a class="show-mini-cart" href="{{ route('carrinho.index') }}">Carrinho</a>
+                    <a class="show-mini-cart" href="{{ route('carrinho.index') }}">Carrinho <span class="cart_count">
+                            @if(Cart::instance('default')->count() > 0)
+                            {{Cart::instance('default')->count()}}
+                            @endif
+                        </span></a>
                     @endif
                     <!-- END MINI-CART -->
                 </div>

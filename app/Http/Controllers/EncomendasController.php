@@ -38,8 +38,8 @@ class EncomendasController extends Controller
  		  	$encomenda = Encomenda::create($input);
 
  	if($encomenda) {
-		Session::flash('success', "Registro #{$novoCliente->id}  salvo com êxito");
-        return redirect()->route('welcome');
+		Session::flash('success', "Registro #{$encomenda->cliente->id}  salvo com êxito");
+        return redirect()->route('tshirt.list');
     }
 		return redirect()->back()->withErrors(['error', "Registo não foi salvo."]);
    }
@@ -73,8 +73,9 @@ class EncomendasController extends Controller
 
 	public function destroy($id)
 	{
-		//TODO
-		if ($cliente) {
+		$encomenda = Encomenda::find($id)->delete();
+
+		if ($encomenda) {
    
 			Session::flash('success', "Registro #{$id} excluído com êxito");
 	  

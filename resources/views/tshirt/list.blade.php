@@ -21,7 +21,15 @@
                             <p class="text-sm-left">Cor: {{ $tsh->cor->nome}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="#" class="btn btn-primary">Comprar</a>
+
+                                    <form action="{{route('carrinho.store')}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $tsh->id }}">
+                                        <input type="hidden" name="nome" value="{{ $tsh->estampa->nome }}">
+                                        <input type="hidden" name="preco_un" value="{{ $tsh->preco_un }}">
+                                        <button type="submit" class="button button-plain">Adicionar Carrinho</button>
+                                    </form>
+
                                 </div>
                                 <small class="text-muted">{{ $tsh->quantidade }} uni</small>
                             </div>

@@ -1,21 +1,14 @@
 @extends('layouts.app')
-@include('layouts.messages')
 
 @section('content')
-
+@include('layouts.messages')
 <head>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/carrinho.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <main>
         <div class="basket">
-            <div class="basket-module">
-                <label for="promo-code">Enter a promotional code</label>
-                <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
-                <button class="promo-code-cta">Apply</button>
-            </div>
             <div class="basket-labels">
                 <ul>
                     <li class="item item-heading">Item</li>
@@ -24,78 +17,65 @@
                     <li class="subtotal">Subtotal</li>
                 </ul>
             </div>
+
+            @foreach (Cart::content() as $item)
+
             <div class="basket-product">
                 <div class="item">
                     <div class="product-image">
-                        <img src="http://placehold.it/120x166" alt="Placholder Image 2" class="product-frame">
+                        <img src="{{asset('storage/estampas/' . $item->model->estampa_id) }}" alt="Placholder Image "
+                            class="product-frame">
                     </div>
                     <div class="product-details">
-                        <h1><strong><span class="item-quantity">4</span> x Eliza J</strong> Lace Sleeve Cuff Dress</h1>
-                        <p><strong>Navy, Size 18</strong></p>
-                        <p>Product Code - 232321939</p>
+                        <h1><strong><span class="item-quantity">1</span> x {{$item->model->estampa_id}}</strong></h1>
+                        <p><strong>{{$item->model->cor_codigo}}, {{$item->model->tamanho}}</strong></p>
                     </div>
                 </div>
-                <div class="price">26.00</div>
+                <div class="price">{{$item->model->preco_un}}</div>
                 <div class="quantity">
-                    <input type="number" value="4" min="1" class="quantity-field">
+                    <input type="number" value="1" min="1" max="{{$item->model->quantidade}}" class="quantity-field">
                 </div>
-                <div class="subtotal">104.00</div>
+                <div class="subtotal">{{$item->subtotal()}}</div>
                 <div class="remove">
-                    <button>Remove</button>
+                    <form action="{{ route('carrinho.destroy', ['id' => $item->rowId]) }}" method="POST">
+                        @csrf
+                        {{method_field('Delete')}}
+                        <button type="submit" class="cart_options">Remover</button>
+                    </form>
                 </div>
             </div>
-            <div class="basket-product">
-                <div class="item">
-                    <div class="product-image">
-                        <img src="http://placehold.it/120x166" alt="Placholder Image 2" class="product-frame">
-                    </div>
-                    <div class="product-details">
-                        <h1><strong><span class="item-quantity">1</span> x Whistles</strong> Amella Lace Midi Dress</h1>
-                        <p><strong>Navy, Size 10</strong></p>
-                        <p>Product Code - 232321939</p>
-                    </div>
-                </div>
-                <div class="price">26.00</div>
-                <div class="quantity">
-                    <input type="number" value="1" min="1" class="quantity-field">
-                </div>
-                <div class="subtotal">26.00</div>
-                <div class="remove">
-                    <button>Remove</button>
-                </div>
-            </div>
+            @endforeach
+
         </div>
         <aside>
             <div class="summary">
-                <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
+                <div class="summary-total-items"><span class="total-items"></span> Items no Carro</div>
                 <div class="summary-subtotal">
                     <div class="subtotal-title">Subtotal</div>
-                    <div class="subtotal-value final-value" id="basket-subtotal">130.00</div>
-                    <div class="summary-promo hide">
-                        <div class="promo-title">Promotion</div>
-                        <div class="promo-value final-value" id="basket-promo"></div>
+                    <div class="subtotal-value final-value" id="basket-subtotal">{{Cart::subtotal()}}</div><br>
+
+                    <div class="summary-total">
+                        <div class="total-title">IVA(23%)</div>
+                        <div class="total-value final-value" id="basket-tax">{{Cart::tax()}}</div>
+                        <div class="total-title">Total</div>
+                        <div class="total-value final-value" id="basket-total">{{Cart::total()}}</div>
+                    </div>
+                    <div class="summary-checkout">
+                        @if (Auth::user()->cliente)
+                        <a href="{{route('encomenda.create')}}"> <button class="checkout-cta">Comprar</button></a><br>
+                        @else
+                        <a href="{{route('cliente.create')}}"> <button class="checkout-cta">Criar conta
+                                cliente</button></a><br>
+                        @endif
+
+                        <a href="{{route('tshirt.list')}}"> <button class="checkout-cta">Voltar à loja</button></a>
+
                     </div>
                 </div>
-                <div class="summary-delivery">
-                    <select name="delivery-collection" class="summary-delivery-selection">
-                        <option value="0" selected="selected">Select Collection or Delivery</option>
-                        <option value="collection">Collection</option>
-                        <option value="first-class">Royal Mail 1st Class</option>
-                        <option value="second-class">Royal Mail 2nd Class</option>
-                        <option value="signed-for">Royal Mail Special Delivery</option>
-                    </select>
-                </div>
-                <div class="summary-total">
-                    <div class="total-title">Total</div>
-                    <div class="total-value final-value" id="basket-total">130.00</div>
-                </div>
-                <div class="summary-checkout">
-                    <button class="checkout-cta">Go to Secure Checkout</button>
-                </div>
-            </div>
         </aside>
     </main>
 </body>
+<script src="{{ asset('js/carrinho.js') }}" defer></script>
 
 </html>
 @endsection
