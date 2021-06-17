@@ -41,7 +41,7 @@ class CarrinhoController extends Controller
         });
 
         if($duplicado->isNotEmpty()){
-            return redirect()->route('carrinho.index')->withErrors(["Item já se encontra no Carro!"]);
+            return redirect()->route('carrinho.index')->withErrors(["Item já se encontra no Carrinho!"]);
         }
         Cart::add($request->id, $request->nome, 1, $request->preco_un)
             ->associate('App\Tshirt');

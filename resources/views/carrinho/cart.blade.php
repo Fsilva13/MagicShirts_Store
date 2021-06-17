@@ -2,6 +2,7 @@
 
 @section('content')
 @include('layouts.messages')
+
 <head>
     <link href="{{ asset('css/carrinho.css') }}" rel="stylesheet">
 </head>
@@ -49,7 +50,7 @@
         </div>
         <aside>
             <div class="summary">
-                <div class="summary-total-items"><span class="total-items"></span> Items no Carro</div>
+                <div class="summary-total-items"><span class="total-items"></span> Itens no Carrinho</div>
                 <div class="summary-subtotal">
                     <div class="subtotal-title">Subtotal</div>
                     <div class="subtotal-value final-value" id="basket-subtotal">{{Cart::subtotal()}}</div><br>
