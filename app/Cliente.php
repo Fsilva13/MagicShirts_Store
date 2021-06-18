@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
-	
 
 	protected $fillable = [
-       'Id','NIF', 'endereco', 'tipo_pagamento', 'ref_pagamento',
+       'id','nif', 'endereco', 'tipo_pagamento', 'ref_pagamento',
     ];
 
     public function encomendas(){

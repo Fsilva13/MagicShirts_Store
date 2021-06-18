@@ -39,7 +39,7 @@ class EncomendasController extends Controller
 
  	if($encomenda) {
 		Session::flash('success', "Registro #{$encomenda->cliente->id}  salvo com êxito");
-        return redirect()->route('tshirt.list');
+        return redirect()->route('estampas.list');
     }
 		return redirect()->back()->withErrors(['error', "Registo não foi salvo."]);
    }

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 //Pag.Inicial
-Route::get('/','TshirtsController@index')->name('tshirt.list');
+Route::get('/','EstampasController@index')->name('estampas.list');
 
 //Encomenda
 Route::get('encomenda/list','EncomendasController@index')->name('encomenda.list');
@@ -27,8 +27,6 @@ Route::put('encomenda/update/{id}','EncomendasController@update')->name('encomen
 
 //Cliente
 Route::get('cliente/list','ClientesController@index')->name('cliente.list');
-Route::get('cliente/create','ClientesController@create')->name('cliente.create');
-Route::post('cliente/store','ClientesController@store')->name('cliente.store');
 Route::delete('cliente/destroy/{id}','ClientesController@destroy')->name('cliente.destroy');
 Route::get('cliente/edit/{id}','ClientesController@edit')->name('cliente.edit');
 Route::put('cliente/update/{id}','ClientesController@update')->name('cliente.update');
@@ -42,6 +40,5 @@ Route::get('carrinho/cart','CarrinhoController@index')->name('carrinho.index');
 Route::post('carrinho/cart','CarrinhoController@store')->name('carrinho.store');
 Route::delete('carrinho/cart/{id}','CarrinhoController@destroy')->name('carrinho.destroy');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();

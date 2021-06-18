@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@include('layouts.messages')
+
 
 @section('content')
-
+@include('layouts.messages')
 
     @if(isset($cliente))
  

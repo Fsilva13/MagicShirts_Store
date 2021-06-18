@@ -3,10 +3,6 @@
 @section('content')
 @include('layouts.messages')
 
-<head>
-    <link href="{{ asset('css/carrinho.css') }}" rel="stylesheet">
-</head>
-
 <body>
     <main>
         <div class="basket">
@@ -24,17 +20,18 @@
             <div class="basket-product">
                 <div class="item">
                     <div class="product-image">
-                        <img src="{{asset('storage/estampas/' . $item->model->estampa_id) }}" alt="Placholder Image "
+                        <img src="{{$item->model->imagem_url ? asset('storage/estampas/' . $item->model->imagem_url) : asset('storage/tshirt_base/'. $item->model->cor_codigo .'.jpg') }}" alt="Placholder Image "
                             class="product-frame">
                     </div>
                     <div class="product-details">
-                        <h1><strong><span class="item-quantity">1</span> x {{$item->model->estampa_id}}</strong></h1>
-                        <p><strong>{{$item->model->cor_codigo}}, {{$item->model->tamanho}}</strong></p>
+                        
+                        <h1><strong><span class="item-quantity">{{$item->qty}}</span> x Tshirt {{$item->model->nome}}</strong></h1>
+                        <p><strong>{{ $item->options['cor']->nome}}, {{$item->options['tamanho']}}</strong></p>
                     </div>
                 </div>
-                <div class="price">{{$item->model->preco_un}}</div>
+                <div class="price">{{$item->price}}</div>
                 <div class="quantity">
-                    <input type="number" value="1" min="1" max="{{$item->model->quantidade}}" class="quantity-field">
+                    <input type="number" value="{{$item->qty}}" min="1" max="" class="quantity-field">
                 </div>
                 <div class="subtotal">{{$item->subtotal()}}</div>
                 <div class="remove">
@@ -62,15 +59,17 @@
                         <div class="total-value final-value" id="basket-total">{{Cart::total()}}</div>
                     </div>
                     <div class="summary-checkout">
-                        @if (Auth::user()->cliente)
-                        <a href="{{route('encomenda.create')}}"> <button class="checkout-cta">Comprar</button></a><br>
+                        @if(Cart::count() == 0)
+                        <a href="{{route('estampas.list')}}"> <button class="checkout-cta">Voltar à loja</button></a>
                         @else
-                        <a href="{{route('cliente.create')}}"> <button class="checkout-cta">Criar conta
+                        @if (Auth::user())
+                        <a href="{{route('encomenda.create')}}"> <button class="checkout-cta">Comprar</button></a><br>
+                        <a href="{{route('estampas.list')}}"> <button class="checkout-cta">Voltar à loja</button></a>
+                        @else
+                        <a href="{{route('register')}}"> <button class="checkout-cta">Criar conta
                                 cliente</button></a><br>
                         @endif
-
-                        <a href="{{route('tshirt.list')}}"> <button class="checkout-cta">Voltar à loja</button></a>
-
+                        @endif
                     </div>
                 </div>
         </aside>

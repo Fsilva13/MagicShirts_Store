@@ -1,8 +1,12 @@
 @extends('layouts.app')
-@include('layouts.messages')
+
 
 
 @section('content')
+@include('layouts.messages')
+<head>
+    <link href="{{ asset('css/carrinho.css') }}" rel="stylesheet">
+</head>
 
 <div class="container">
     <table class="table table-bordered table-striped table-sm">
@@ -11,7 +15,7 @@
                 @forelse($tshirt as $tsh)
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img class="card-img-top"
+                        <img class="product-image"
                             data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
                             alt="Thumbnail [100%x225]" style="height: 400px; width: 100%; display: block;"
                             src="{{$tsh->estampa->imagem_url ? asset('storage/estampas/' . $tsh->estampa->imagem_url) : asset('storage/tshirt_base/'. $tsh->cor_codigo .'.jpg') }}"

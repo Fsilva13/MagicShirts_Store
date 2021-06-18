@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/carrinho.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -75,13 +76,13 @@
                         @endguest
                     </ul>
                     <!-- MINI-CART -->
-                    @if (Auth::check())
+                    
                     <a class="show-mini-cart" href="{{ route('carrinho.index') }}">Carrinho <span class="cart_count">
                             @if(Cart::instance('default')->count() > 0)
                             {{Cart::instance('default')->count()}}
                             @endif
                         </span></a>
-                    @endif
+                    
                     <!-- END MINI-CART -->
                 </div>
             </div>

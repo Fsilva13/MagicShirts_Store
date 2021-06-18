@@ -19,7 +19,7 @@ class ClientesController extends Controller
         $user = Cliente::with('user');
        return view('Cliente.list', compact('cliente'))->with('user',$user);
    } 
-
+/*
       public function store(Request $request){
 
    		$rules = [
@@ -57,6 +57,7 @@ class ClientesController extends Controller
    		return view('cliente.create');
    }
 
+*/
 
    public function destroy($id)
 {

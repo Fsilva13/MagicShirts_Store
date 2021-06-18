@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Cor;
 use App\Estampa;
 
 use Illuminate\Http\Request;
@@ -8,12 +10,12 @@ use Illuminate\Support\Facades\Storage;
 
 class EstampasController extends Controller
 {
-    /*public function index()
+    public function index()
     {
-        $estampa = Estampa::all();
-
-       return view('Estampa.index', compact('estampa'));
-   }*/
+        $estampas = Estampa::paginate(12);
+        $cores = Cor::all();
+       return view('estampa.list', compact('estampas','cores'));
+   }
 
    public function store(Request $request){
 

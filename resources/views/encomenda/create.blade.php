@@ -31,7 +31,7 @@
                         @if (isset($encomenda))
                         Editar encomenda #{{ $encomenda->id }}
                         @else
-                        Criar nova encomenda
+                        Nova encomenda
                         @endif
                     </span>
                 </div>
@@ -72,8 +72,13 @@
             <div class="form-group">
                 <label class="col-md-8 control-label" for="cliente_id">Cliente</label>
                 <div class="col-md-8">
+                    @if(isset($encomenda))
                     <input id="cliente_id" name="cliente_id" type="text" placeholder="" class="form-control input-md"
                         value="{{old('cliente_id') ?? $encomenda->cliente_id ?? '' }}">
+                    @else
+                    <input id="cliente_id" name="cliente_id" type="text" placeholder="" class="form-control input-md"
+                        value="{{Auth::user()->name}}">
+                    @endif
                     @error('cliente_id')
                     <div class="error">
                         {{$message}}
@@ -97,10 +102,15 @@
             </div>
 
             <div class="form-group">
-                <label class="col-md-8 control-label" for="preco_total">Preço</label>
+                <label class="col-md-8 control-label" for="preco_total">Preço(€)</label>
                 <div class="col-md-8">
+                    @if(isset($encomenda))
                     <input id="preco_total" name="preco_total" type="number" placeholder=""
                         class="form-control input-md" value="{{old('preco_total') ?? $encomenda->preco_total ?? '' }}">
+                    @else
+                    <input id="preco_total" name="preco_total" type="number" placeholder=""
+                        class="form-control input-md" value="{{Cart::instance()->total()}}">
+                    @endif
                     @error('preco_total')
                     <div class="error">
                         {{$message}}
@@ -212,25 +222,24 @@
     <aside>
         <div class="summary">
             <div class="checkout-table-container">
-                <h2>Your Order</h2>
+                <h2>Seu carrinho</h2>
 
                 <div class="checkout-table">
                     @foreach (Cart::content() as $item)
                     <div class="checkout-table-row">
-                        <div class="checkout-table-row-left">
-                            <img src="{{ $item->model->estampa_id }}" class="checkout-table-img">
+                        <div class="summary-subtotal">
+                            <img class="product-image"
+                                src="{{$item->model->imagem_url ? asset('storage/estampas/' . $item->model->imagem_url) : asset('storage/tshirt_base/'. $item->model->cor_codigo .'.jpg') }}"
+                                class="checkout-table-img">
                             <div class="checkout-item-details">
-                                <div class="checkout-table-item">{{ $item->model->estampa_id }}</div>
-                                <div class="checkout-table-price">{{ $item->model->preco_un }}</div>
+                                <div class="checkout-table-item">Tshirt: {{ $item->model->nome }}</div>
+                                <div class="checkout-table-price">Preço: {{ $item->price }} €</div>
+                                <div class="checkout-table-tamanho">Tamanho: {{ $item->options['tamanho'] }}</div>
+                                <div class="checkout-table-quantity">Quantidade: {{ $item->qty }}</div>
                             </div>
                         </div> <!-- end checkout-table -->
-
-                        <div class="checkout-table-row-right">
-                            <div class="checkout-table-quantity">{{ $item->qty }}</div>
-                        </div>
                     </div> <!-- end checkout-table-row -->
                     @endforeach
-
                 </div> <!-- end checkout-table -->
             </div> <!-- end checkout-totals -->
         </div>

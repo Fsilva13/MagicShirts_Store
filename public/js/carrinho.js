@@ -103,6 +103,7 @@ function updateQuantity(quantityInput) {
 
   productRow.find('.item-quantity').text(quantity);
   updateSumItems();
+  
 }
 
 function updateSumItems() {
