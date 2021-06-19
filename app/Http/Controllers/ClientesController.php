@@ -61,7 +61,7 @@ public function update(Request $request, $id)
    
   Session::flash('success', "Conta atualizada com êxito");
    
-  return redirect()->route('cliente.list');
+  return redirect()->back();
     }
     return redirect()->back()->withErrors(['error', "Registo não foi encontrado"]);
 }

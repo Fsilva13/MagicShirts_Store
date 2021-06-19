@@ -69,7 +69,7 @@
                                 </a>
                                 @if (Auth::user()->cliente)
                                 <a href="{{ route('cliente.edit', ['id' => Auth::id()]) }}"
-                                    class="dropdown-item">Editar</a>
+                                    class="dropdown-item">Dados da Conta</a>
                                 @endif
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 

@@ -11,19 +11,14 @@
 
     <div class="row justify-content-center">
 
-
-
-
-
-
         <!-- Text input-->
         <div class="form-group col-7 ">
             <h2>Dados Conta Cliente</h2>
-            <label class="control-label" for="NIF">NIF</label>
+            <label class="control-label" for="nif">Nif</label>
 
-            <input id="NIF" name="NIF" type="text" placeholder="" class="form-control input-md" required=""
-                value="{{ old('NIF') ?? $cliente->nif ?? '' }}">
-            @error('NIF')
+            <input id="nif" name="nif" type="text" placeholder="" class="form-control input-md" required=""
+                value="{{ old('nif') ?? $cliente->nif ?? '' }}">
+            @error('nif')
             <div class="error">
                 {{$message}}
             </div>
@@ -88,9 +83,8 @@
         <!-- Button (Double) -->
         <div class="form-group col-7">
             <label class=" control-label" for="submit"></label>
-
             <button id="submit" name="submit" class="btn btn-secondary">Guardar</button>
-            <a href="{{url()->previous()}}" class="btn btn-danger">Cancelar</a>
+            <a href="{{route('estampas.list')}}" class="btn btn-danger">Cancelar</a>
         </div>
     </div>
 </fieldset>
