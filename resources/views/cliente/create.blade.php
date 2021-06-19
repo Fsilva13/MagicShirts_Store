@@ -15,7 +15,6 @@
         <div class="form-group col-7 ">
             <h2>Dados Conta Cliente</h2>
             <label class="control-label" for="nif">Nif</label>
-
             <input id="nif" name="nif" type="text" placeholder="" class="form-control input-md" required=""
                 value="{{ old('nif') ?? $cliente->nif ?? '' }}">
             @error('nif')
@@ -29,7 +28,6 @@
         <!-- Text input-->
         <div class="form-group col-7">
             <label class=" control-label" for="endereco">Endereço</label>
-
             <input id="endereco" name="endereco" type="text" placeholder="" class="form-control input-md" required=""
                 value="{{old('endereco') ?? $cliente->endereco ?? ''}}">
             @error('endereco')
@@ -43,7 +41,6 @@
         <!-- Select Basic -->
         <div class="form-group col-7">
             <label class="control-label" for="tipo_pagamento">Tipo de Pagamento</label>
-
             <select id="tipo_pagamento" name="tipo_pagamento" class="form-control">
                 @if (isset($cliente))
                 @foreach(["VISA" => "VISA", "MC" => "MC", "PAYPAL" => "PAYPAL"] AS $tipo_pagamento => $clienteLabel)
@@ -69,7 +66,6 @@
         <!-- Text input-->
         <div class="form-group col-7">
             <label class=" control-label" for="ref_pagamento">Ref. Pagamento</label>
-
             <input id="ref_pagamento" name="ref_pagamento" type="text" placeholder="" class="form-control input-md"
                 value="{{old('ref_pagamento')  ?? $cliente->ref_pagamento ?? ''}}">
             @error('ref_pagamento')
