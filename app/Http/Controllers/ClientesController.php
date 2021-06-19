@@ -65,4 +65,8 @@ public function update(Request $request, $id)
     }
     return redirect()->back()->withErrors(['error', "Registo não foi encontrado"]);
 }
+
+public function imagem(Cliente $cliente){
+    return response()->file(storage_path('app/fotos/'.$cliente->foto_url ));
+}
 }
