@@ -12,7 +12,7 @@ class NotificarPendente extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected Encomenda $encomenda;
+    protected $encomenda;
 
     /**
      * Create a new message instance.
