@@ -35,11 +35,11 @@ class ClientesController extends Controller
  
     if ($cliente) {
    
-         Session::flash('success', "Registro #{$id} excluído com êxito");
+         Session::flash('success', "Registro excluído com êxito");
    
          return redirect()->route('cliente.list');
     } 
-    return redirect()->back()->withErrors(['error', "Registo #{$id} não pode ser excluído"]);
+    return redirect()->back()->withErrors(['error', "Registo não pode ser excluído"]);
 }
 
 public function edit($id)
@@ -59,10 +59,10 @@ public function update(Request $request, $id)
  
     if ($cliente) {
    
-  Session::flash('success', "Registro #{$id} atualizado com êxito");
+  Session::flash('success', "Conta atualizada com êxito");
    
   return redirect()->route('cliente.list');
     }
-    return redirect()->back()->withErrors(['error', "Registo #{$id} não foi encontrado"]);
+    return redirect()->back()->withErrors(['error', "Registo não foi encontrado"]);
 }
 }

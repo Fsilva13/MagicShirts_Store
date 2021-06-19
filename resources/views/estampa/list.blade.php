@@ -5,9 +5,10 @@
 <div class="container">
     <div>
         @if(!$privada)
-
+        @if(Auth::check())
         <a id="btn_estampas" href="{{route('estampas.privadas')}}" class="btn btn-secondary btn-block btn-lg">Estampas
             Privadas</a>
+        @endif
         @else
         <div class="row" id="btn_estampas">
             <div class="col-md-6">
