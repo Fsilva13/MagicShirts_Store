@@ -35,6 +35,10 @@ Route::put('cliente/update/{id}','ClientesController@update')->name('cliente.upd
 Route::get('estampa/create','EstampasController@create')->name('estampa.create');
 Route::post('estampa/store','EstampasController@store')->name('estampa.store');
 
+//Estampas_Privadas
+Route::get('estampa/privadas','EstampasController@privadas')->name('estampas.privadas');
+Route::get('estampa/privadas/{estampa}','EstampasController@imagem')->name('estampas.privadas.imagem');
+
 //Carrinho
 Route::get('carrinho/cart','CarrinhoController@index')->name('carrinho.index');
 Route::post('carrinho/cart','CarrinhoController@store')->name('carrinho.store');

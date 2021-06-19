@@ -257,6 +257,10 @@ aside {
   box-sizing: border-box;
 }
 
+#summary-encomenda {
+  width: 350px;
+}
+
 .summary-total-items {
   color: #666;
   font-size: 0.875rem;

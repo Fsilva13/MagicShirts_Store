@@ -1,33 +1,48 @@
 @extends('layouts.app')
-
-
-
 @section('content')
 @include('layouts.messages')
 
 <div class="container">
+    <div>
+        @if(!$privada)
+
+        <a id="btn_estampas" href="{{route('estampas.privadas')}}" class="btn btn-secondary btn-block btn-lg">Estampas
+            Privadas</a>
+        @else
+        <div class="row" id="btn_estampas">
+            <div class="col-md-6">
+                <a href="{{route('estampas.list')}}" class="btn btn-secondary btn-block btn-lg">Catalogo de Estampas</a>
+            </div>
+            <div class="col-md-6">
+                <a href="{{route('estampa.create')}}" class="btn btn-secondary btn-block btn-lg">Criar Estampa</a>
+            </div>
+        </div>
+        @endif
+    </div>
     <table class="table table-bordered table-striped table-sm">
         <tbody>
             <div class="row">
                 @forelse($estampas as $estampa)
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img class="product-image"
+                        
+                        <img class="product-imagem"
                             data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-                            alt="Thumbnail [100%x225]" style="height: 400px; width: 100%; display: block;"
-                            src="{{$estampa->imagem_url ? asset('storage/estampas/' . $estampa->imagem_url) : '' }}"
-                            data-holder-rendered="true">
+                            alt="Thumbnail [100%x225]"
+                            src="{{$estampa->cliente_id ? route('estampas.privadas.imagem', $estampa->id) : asset('storage/estampas/' . $estampa->imagem_url) }}"
+                            data-holder-rendered="true">                          
+                        
                         <div class="card-body">
                             <p class="text-sm-left">Nome: {{ $estampa->nome}}</p>
-                            
+
                             <p class="card-text">Descricao: {{ $estampa->descricao}}</p><br>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
 
                                     <form action="{{route('carrinho.store')}}" method="POST">
-                                        @csrf                                       
+                                        @csrf
                                         <input type="hidden" name="id" value="{{$estampa->id}}">
-                                        
+
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-secondary" data-toggle="modal"
                                             data-target="#modal{{$estampa->id}}">
@@ -48,7 +63,7 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    
+
                                                     <div class="modal-body">
                                                         <label class="col-md control-label"
                                                             for="tamanho">Tamanho</label>
@@ -86,7 +101,7 @@
                                                             </select>
                                                         </div>
                                                         <label class="col-md control-label"
-                                                            for="tamanho">Tamanho</label>
+                                                            for="tamanho">Quantidade</label>
                                                         <div class="col-md">
                                                             <input type="number" name="quantidade" class="form-control"
                                                                 min="1">

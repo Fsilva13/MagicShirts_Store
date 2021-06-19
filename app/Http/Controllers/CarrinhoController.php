@@ -39,35 +39,35 @@ class CarrinhoController extends Controller
      */
     public function store(Request $request)
     {
-        $duplicado = Cart::search( function($carItem, $rowId) use ($request){
+        $duplicado = Cart::search(function ($carItem, $rowId) use ($request) {
             return $carItem->id === $request->id and $carItem->tamanho === $request->tamanho and $carItem->cor === $request->cor;
         });
 
-        if($duplicado->isNotEmpty()){
+        if ($duplicado->isNotEmpty()) {
             return redirect()->route('carrinho.index')->withErrors(["Item já se encontra no Carrinho!"]);
         }
         $estampa = Estampa::find($request->id);
         $precos = Preco::all()->first();
 
-        if($estampa->cliente_id){
-            if($request->quantidade >= $precos->quantidade_desconto){
-               $preco_un = $precos->preco_un_proprio_desconto;   
-            }else{
+        if ($estampa->cliente_id) {
+            if ($request->quantidade >= $precos->quantidade_desconto) {
+                $preco_un = $precos->preco_un_proprio_desconto;
+            } else {
                 $preco_un = $precos->preco_un_proprio;
             }
-        }else{
-            if($request->quantidade >= $precos->quantidade_desconto){
+        } else {
+            if ($request->quantidade >= $precos->quantidade_desconto) {
                 $preco_un = $precos->preco_un_catalogo_desconto;
-            }else{
+            } else {
                 $preco_un = $precos->preco_un_catalogo;
             }
         }
-        
+
         $cor = Cor::find($request->cor_codigo);
         Cart::add($request->id, $estampa->nome, $request->quantidade, $preco_un, ['tamanho' => $request->tamanho, 'cor' => $cor])->associate('App\Estampa');
-        
+
         Session::flash('success', "Item Adicionado!");
-   
+
         return redirect()->route('carrinho.index');
     }
 

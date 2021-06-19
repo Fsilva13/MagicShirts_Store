@@ -1,0 +1,22 @@
+.product-imagem{
+    object-fit: contain;
+    height: 300px;
+    width: 100%;
+    display: block;
+}
+
+#btn_estampas{
+    margin-bottom: 1rem;
+}
+
+#img_encomenda{
+    margin-right: 10px;
+    
+    width: 45%;
+}
+
+.summary-total{
+    border-bottom: 0px;
+    margin-bottom:0px;
+}
+

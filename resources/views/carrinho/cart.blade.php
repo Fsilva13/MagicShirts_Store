@@ -14,13 +14,13 @@
                     <li class="subtotal">Subtotal</li>
                 </ul>
             </div>
-
+            
             @foreach (Cart::content() as $item)
 
             <div class="basket-product">
                 <div class="item">
                     <div class="product-image">
-                        <img src="{{$item->model->imagem_url ? asset('storage/estampas/' . $item->model->imagem_url) : asset('storage/tshirt_base/'. $item->model->cor_codigo .'.jpg') }}" alt="Placholder Image "
+                        <img src="{{$item->model->cliente_id ? route('estampas.privadas.imagem', $item->model->id) : asset('storage/estampas/' . $item->model->imagem_url) }}" alt="Placholder Image "
                             class="product-frame">
                     </div>
                     <div class="product-details">

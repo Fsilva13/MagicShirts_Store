@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Estampa extends Model
 {
 	protected $fillable = [
-        'id','nome', 'descricao', 'imagem_url'
+        'id','cliente_id','nome', 'descricao', 'imagem_url'
     ];
 
 	public function categoria(){
