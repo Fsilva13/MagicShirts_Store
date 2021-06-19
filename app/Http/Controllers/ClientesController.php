@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Cliente;
 use App\User;
-use App\Encomenda;
-
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ClientesController extends Controller
@@ -57,17 +56,19 @@ class ClientesController extends Controller
 
     public function update(Request $request, $id)
     {
-        Storage::put('fotos', $request->foto_url);
         $cliente = Cliente::find($id)->update($request->except('_token', '_method'));
 
-        
-       
-        if ($cliente) {
-                       
-            Session::flash('success', "Conta atualizada com êxito");
-
-            return redirect()->back();
+        if ($request->file('foto_url')) {
+            $path = $request->file('foto_url')->store('public/fotos');
+            $path = str_replace('public/fotos/', '', $path);
+            DB::table('users')
+                ->where('id', $id)
+                ->update(['foto_url' => $path]);
         }
-        return redirect()->back()->withErrors(['error', "Registo não foi encontrado"]);
+        if ($cliente) {
+            return redirect()->back()->with('success', 'Conta atualizada com êxito!');
+        } else {
+            return redirect()->back()->withErrors(['error', "Registo não foi encontrado"]);
+        }
     }
 }

@@ -4,13 +4,12 @@
 @section('content')
 @include('layouts.messages')
 
-{!! Form::model($cliente, ['method' => 'put', 'route' => ['cliente.update', $cliente->id ], 'class' =>
-'form-horizontal']) !!}
+{!! Form::model($cliente, ['method' => 'put', 'route' => ['cliente.update', $cliente->id ], 'class' =>'form-horizontal', 'enctype' => "multipart/form-data"]) !!}
+
 @CSRF
 <fieldset>
 
     <div class="row justify-content-center">
-
         <div class="form-group col-7 ">
             <h2>Dados Conta Cliente</h2>
             <img name="foto_url" class="product-imagem"

@@ -44,5 +44,4 @@ Route::get('carrinho/cart','CarrinhoController@index')->name('carrinho.index');
 Route::post('carrinho/cart','CarrinhoController@store')->name('carrinho.store');
 Route::delete('carrinho/cart/{id}','CarrinhoController@destroy')->name('carrinho.destroy');
 
-
 Auth::routes();
