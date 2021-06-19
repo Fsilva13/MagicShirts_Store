@@ -119,10 +119,10 @@
     </div>
     <aside>
         <div id="summary-encomenda" class="summary">
-            <div class="checkout-table-container">
+            <div  class="checkout-table-container">
                 <h2>Seu carrinho</h2>
 
-                <div class="checkout-table">
+                <div class="checkout-table" id="carrinho_encomendas">
                     @foreach (Cart::content() as $item)
                     <div class="checkout-table-row">
                         <div class="summary-total" >
@@ -130,9 +130,7 @@
                         <img id="estampa-encomenda" src="{{$item->model->cliente_id ? route('estampas.privadas.imagem', $item->model->id) : asset('storage/estampas/' . $item->model->imagem_url) }}" alt="Placholder Image " >
                         <img id="shirt-encomenda" src="{{asset('storage/tshirt_base/'. $item->options['cor']->codigo) . '.jpg'}}" alt="Placholder Image "
                             class="product-frame">
-
                     </div>
-
                             <div  class="checkout-item-details">
                                 <div class="checkout-table-item"> Tshirt: {{ $item->model->nome }}</div>
                                 <div class="checkout-table-price"> Preço: {{ $item->price }} €</div>

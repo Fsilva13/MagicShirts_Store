@@ -411,3 +411,9 @@ aside {
     padding: 0 1rem;
   }
 }
+
+
+#carrinho_encomendas{
+  overflow-y:scroll ;
+  height: 600px;
+}
