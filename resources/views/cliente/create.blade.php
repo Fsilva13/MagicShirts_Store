@@ -11,9 +11,22 @@
 
     <div class="row justify-content-center">
 
-        <!-- Text input-->
         <div class="form-group col-7 ">
             <h2>Dados Conta Cliente</h2>
+            <img name="foto_url" class="product-imagem"
+                data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                alt="Thumbnail [100%x225]"
+                src="{{Auth::user()->foto_url ? asset('storage/fotos/' . Auth::user()->foto_url) : 'https://digimedia.web.ua.pt/wp-content/uploads/2017/05/default-user-image.png' }}"
+                data-holder-rendered="true">
+        </div>
+        <div class="form-group justify-content-md-center col-7">
+            <label class="control-label" for="filebutton">Upload Foto</label>
+            <input name="foto_url" class="file-input" type="file">
+
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group col-7 ">
             <label class="control-label" for="nif">Nif</label>
             <input id="nif" name="nif" type="text" placeholder="" class="form-control input-md" required=""
                 value="{{ old('nif') ?? $cliente->nif ?? '' }}">
