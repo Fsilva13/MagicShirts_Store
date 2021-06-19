@@ -20,6 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/carrinho.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estampas.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/preview.css') }}" rel="stylesheet">
     
 </head>
 

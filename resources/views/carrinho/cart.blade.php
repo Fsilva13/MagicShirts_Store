@@ -20,8 +20,10 @@
             <div class="basket-product">
                 <div class="item">
                     <div class="product-image">
-                        <img src="{{$item->model->cliente_id ? route('estampas.privadas.imagem', $item->model->id) : asset('storage/estampas/' . $item->model->imagem_url) }}" alt="Placholder Image "
+                        <img id="estampa" src="{{$item->model->cliente_id ? route('estampas.privadas.imagem', $item->model->id) : asset('storage/estampas/' . $item->model->imagem_url) }}" alt="Placholder Image " >
+                        <img id="shirt" src="{{asset('storage/tshirt_base/'. $item->options['cor']->codigo) . '.jpg'}}" alt="Placholder Image "
                             class="product-frame">
+
                     </div>
                     <div class="product-details">
                         

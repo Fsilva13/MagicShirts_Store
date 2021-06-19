@@ -112,7 +112,7 @@
             <label class="col-md-8 control-label" for="button1id"></label>
             <div class="col-md-8">
                 <button id="submit" name="submit" class="btn btn-success">Criar</button>
-                <a href="{{url()->previous()}}" class="btn btn-danger">Cancelar</a>
+                <a href="{{route('carrinho.index')}}" class="btn btn-danger">Cancelar</a>
             </div>
         </div>
         </form>
@@ -126,13 +126,19 @@
                     @foreach (Cart::content() as $item)
                     <div class="checkout-table-row">
                         <div class="summary-total" >
-                            <img id ="img_encomenda" class="product-image" src="{{$item->model->cliente_id ? route('estampas.privadas.imagem', $item->model->id) :  asset('storage/estampas/' . $item->model->imagem_url) }}" class="checkout-table-img">
-                            <div class="checkout-item-details">
-                                <div class="checkout-table-item">Tshirt: {{ $item->model->nome }}</div>
-                                <div class="checkout-table-price">Preço: {{ $item->price }} €</div>
-                                <div class="checkout-table-tamanho">Tamanho: {{ $item->options['tamanho'] }}</div>
-                                <div class="checkout-table-cor">Tamanho: {{ $item->options['cor']->nome }}</div>
-                                <div class="checkout-table-quantity">Quantidade: {{ $item->qty }}</div>
+                            <div id="details-encomenda" class="product-image">
+                        <img id="estampa-encomenda" src="{{$item->model->cliente_id ? route('estampas.privadas.imagem', $item->model->id) : asset('storage/estampas/' . $item->model->imagem_url) }}" alt="Placholder Image " >
+                        <img id="shirt-encomenda" src="{{asset('storage/tshirt_base/'. $item->options['cor']->codigo) . '.jpg'}}" alt="Placholder Image "
+                            class="product-frame">
+
+                    </div>
+
+                            <div  class="checkout-item-details">
+                                <div class="checkout-table-item"> Tshirt: {{ $item->model->nome }}</div>
+                                <div class="checkout-table-price"> Preço: {{ $item->price }} €</div>
+                                <div class="checkout-table-tamanho"> Tamanho: {{ $item->options['tamanho'] }}</div>
+                                <div class="checkout-table-cor"> Cor: {{ $item->options['cor']->nome }}</div>
+                                <div class="checkout-table-quantity"> Quantidade: {{ $item->qty }}</div>
                             </div>
                         </div> <!-- end checkout-table -->
                         <div class="font-weight-bold">Subtotal: {{ $item->qty*$item->price }}€</div>
