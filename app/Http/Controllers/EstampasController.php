@@ -16,10 +16,19 @@ class EstampasController extends Controller
     {
         $estampas = Estampa::whereNull('cliente_id');
 
-        
+
         if ($request->inputsearch) {
-            $estampas->where('nome','like','%'.$request->inputsearch.'%')
-            ->orWhere('descricao','like','%'.$request->inputsearch.'%');
+
+            $categorias_id = [];
+
+            $categorias = Categoria::where('nome', 'like', '%' . $request->inputsearch . '%')->get('id');
+            foreach ($categorias as $categoria) {
+                array_push($categorias_id, strval($categoria->id));
+            }
+
+            $estampas->where('nome', 'like', '%' . $request->inputsearch . '%')
+                ->orWhere('descricao', 'like', '%' . $request->inputsearch . '%')
+                ->orWhereIn('categoria_id', $categorias_id);
         }
 
         if ($request->categoria_id != null) {
@@ -34,7 +43,6 @@ class EstampasController extends Controller
         $categorias = Categoria::all();
         $request->flash();
         return view('estampa.list', compact('estampas', 'cores', 'privada', 'categorias'));
-
     }
 
     public function store(Request $request)
@@ -52,16 +60,32 @@ class EstampasController extends Controller
         ];
 
         $request->validate($rules, $messages); //verifica rules
-        Storage::put('estampas_privadas', $request->imagem);
 
 
-        $estampa = Estampa::create([
-            "nome" => $request->get('nome'),
-            "cliente_id" => Auth::user()->id,
-            "descricao" => $request->get('descricao'),
-            "imagem_url" => $request->imagem->hashName()
-        ]);
-        return redirect()->route('estampas.privadas')->with('success', 'Estampa criada com sucesso!');
+        if (Auth::user()->tipo != 'C') {
+
+            Storage::put('public/estampas', $request->imagem);
+
+            $estampa = Estampa::create([
+                "nome" => $request->get('nome'),
+                "descricao" => $request->get('descricao'),
+                "imagem_url" => $request->imagem->hashName()
+            ]);
+
+            return redirect()->route('estampas.list')->with('success', 'Estampa criada com sucesso!');
+        } else {
+
+            Storage::put('estampas_privadas', $request->imagem);
+
+            Estampa::create([
+                "nome" => $request->get('nome'),
+                "cliente_id" => Auth::user()->id,
+                "descricao" => $request->get('descricao'),
+                "imagem_url" => $request->imagem->hashName()
+            ]);
+
+            return redirect()->route('estampas.privadas')->with('success', 'Estampa criada com sucesso!');
+        }
     }
 
     public function create()
@@ -80,5 +104,44 @@ class EstampasController extends Controller
     public function imagem(Estampa $estampa)
     {
         return response()->file(storage_path('app/estampas_privadas/' . $estampa->imagem_url));
+    }
+
+    public function edit(Estampa $estampa)
+    {
+        return view('estampa.create', compact('estampa'));
+    }
+
+    public function destroy(Estampa $estampa)
+    {
+        $estampa->delete();
+
+        return redirect()->route('estampas.list')->with('success', "Estampa excluída com êxito");
+    }
+
+    public function update(Request $request, Estampa $estampa)
+    {
+        $rules = [
+            'nome' => 'required',
+            'descricao' => 'nullable',
+            'imagem' => 'image'
+        ];
+
+        $messages = [
+            'nome.required' => 'É obrigatório ter um nome',
+        ];
+
+        $request->validate($rules, $messages); //verifica rules
+
+        $estampa->nome = request()->nome;
+        $estampa->descricao = request()->descricao;
+
+        if ($request->imagem) {
+
+            Storage::put('public/estampas', $request->imagem);
+            Storage::delete($estampa->imagem_url);
+        }
+        $estampa->save();
+
+        return redirect()->route('estampas.list')->with('success', "Estampa actualizada com êxito");
     }
 }

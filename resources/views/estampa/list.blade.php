@@ -5,7 +5,7 @@
 <div class="container">
     <div>
         @if(!$privada)
-        @if(Auth::check())
+        @if(Auth::check() and Auth::user()->tipo == 'C')
         <a id="btn_estampas" href="{{route('estampas.privadas')}}" class="btn btn-secondary btn-block btn-lg">Estampas
             Privadas</a>
         @endif
@@ -19,17 +19,20 @@
             </div>
         </div>
         @endif
+        @if( Auth::user()->tipo == 'A')
+        <a id="btn_estampas" href="{{route('estampa.create')}}" class="btn btn-secondary btn-block btn-lg">Criar Estampa</a>
+        @endif
     </div>
 
-    <form action="{{route('estampas.list')}}" method="GET">
+    <form id="form_search" action="{{route('estampas.list')}}" method="GET">
         <div class="input-group justify-content-center">
             <div class="form-outline">
-                <input name="inputsearch" id="input_search" type="search" class="form-control" />
+                <input value="{{old('inputsearch')}}" name="inputsearch" id="input_search" type="search" class="form-control" />
             </div>
             @if(!$privada)
             <div id="search_div_categoria" class="col-md justify-content-md-center">
-                <select id="search_categoria" name="categoria_id" class="form-control " onchange="">
-                    <option value="" selected >--Categoria--</option>
+                <select id="search_categoria" name="categoria_id" class="form-control ">
+                    <option value="" selected>--Categoria--</option>
                     @foreach($categorias as $categoria)
                     <option value="{{$categoria->id}}" {{ old("categoria_id") == $categoria->id ? "selected" : "" }}>
                         {{$categoria->nome}}
@@ -61,7 +64,7 @@
                             <p class="card-text">Descricao: {{ $estampa->descricao}}</p><br>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-
+                                    @if(Auth::check() and Auth::user()->tipo == 'C')
                                     <form action="{{route('carrinho.store')}}" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$estampa->id}}">
@@ -130,10 +133,22 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     </form>
-
+                                    @else
+                                    <form action="{{route('estampa.edit',$estampa->id)}}" method="GET">
+                                    @csrf
+                                        <button type="submit" class="btn btn-secondary" data-toggle="modal">
+                                            Actualizar
+                                        </button>
+                                    </form>
+                                    <form action="{{route('estampa.destroy',$estampa->id)}}" method="POST">
+                                    @csrf
+                                        {{method_field('DELETE')}}
+                                        <button type="submit" class="btn btn-secondary" data-toggle="modal">
+                                            Apagar
+                                        </button>
+                                    </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>

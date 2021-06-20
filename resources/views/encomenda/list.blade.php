@@ -18,7 +18,7 @@
         <th>Endereço</th>
         <th>Tipo de Pagamento</th>
         <th>Ref. Pagamento</th>
-        </th>
+        <th style="text-align: center;">#####</th>
       </tr>
     </thead>
     <tbody>
@@ -34,6 +34,13 @@
         <td>{{ $enc->endereco }}</td>
         <td>{{ $enc->tipo_pagamento }}</td>
         <td>{{ $enc->ref_pagamento }}</td>
+        @if($enc->recibo_url)
+        <td>
+          <form method="GET" action="{{ route('encomenda.pdf', ['encomenda' => $enc->id]) }}" style="display: inline">
+            <button type="submit" class="btn btn-secondary btn-sm">PDF Fatura</button>
+          </form>
+        </td>
+        @endif
         @if(Auth::user()->tipo != 'C')
         <td>
           <form method="POST" action="{{ route('encomenda.update', ['encomenda' => $enc->id]) }}" style="display: inline">

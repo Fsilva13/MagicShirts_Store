@@ -26,7 +26,7 @@ class EncomendasController extends Controller
 
 		switch ($tipo_user) {
 			case 'C':
-				$encomendas = Encomenda::where('cliente_id', '=', Auth::user()->id)->paginate(15);
+				$encomendas = Encomenda::where('cliente_id', '=', Auth::user()->id)->orderBy('estado', 'desc')->paginate(15);
 				break;
 			case 'F':
 				$encomendas = Encomenda::whereIn('estado', ['pendente', 'paga'])->paginate(15);
@@ -136,14 +136,14 @@ class EncomendasController extends Controller
 
 		if ($request->estado == 'paga') {
 			Mail::to(Auth::user()->email)->send(new NotificarPaga($encomenda));
-		} else {		
+		} else {
 			// Generate PDF
 			// share data to view
-        	$pdf = PDF::loadView('pdf.pdf_view', compact('encomenda'));
-			
-			Storage::put('pdf_recibos/'.$encomenda->id.'.pdf', $pdf->output());
+			$pdf = PDF::loadView('pdf.pdf_view', compact('encomenda'));
 
-			$encomenda->recibo_url = $encomenda->id.'.pdf';
+			Storage::put('pdf_recibos/' . $encomenda->id . '.pdf', $pdf->output());
+
+			$encomenda->recibo_url = $encomenda->id . '.pdf';
 
 			Mail::to(Auth::user()->email)->send(new NotificarFechada($encomenda));
 		}
@@ -151,5 +151,18 @@ class EncomendasController extends Controller
 		$encomenda->save();
 
 		return redirect()->back()->with(['success', "A encomenda #{$encomenda->id} foi atualizada com sucesso!"]);
+	}
+
+	public function pdf(Encomenda $encomenda)
+	{
+		if ($encomenda->recibo_url) {
+			$headers = array(
+				'Content-Type: application/pdf',
+			);
+
+			return response()->download(storage_path('app/pdf_recibos/' . $encomenda->recibo_url, 'Fatura' . $encomenda->id . '.pdf', $headers));
+		}
+
+		abort(404,'Ficheiro não encontrado!');
 	}
 }

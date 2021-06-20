@@ -25,7 +25,7 @@ Route::patch('encomenda/update/{encomenda}','EncomendasController@update')->name
 
 //Utilizador
 Route::get('utilizador/list','UtilizadoresController@index')->name('utilizador.list');
-Route::delete('utilizador/destroy/{id}','UtilizadoresController@destroy')->name('utilizador.destroy');
+Route::delete('utilizador/{id}','UtilizadoresController@destroy')->name('utilizador.destroy');
 Route::get('utilizador/edit/{id}','UtilizadoresController@edit')->name('utilizador.edit');
 Route::put('utilizador/update/{id}','UtilizadoresController@update')->name('utilizador.update');
 Route::put('utilizador/password','UtilizadoresController@password')->name('utilizador.password');
@@ -34,6 +34,9 @@ Route::put('utilizador/password','UtilizadoresController@password')->name('utili
 //Estampa
 Route::get('estampa/create','EstampasController@create')->name('estampa.create');
 Route::post('estampa/store','EstampasController@store')->name('estampa.store');
+Route::get('estampa/edit/{estampa}','EstampasController@edit')->name('estampa.edit');
+Route::delete('estampa/{estampa}','EstampasController@destroy')->name('estampa.destroy');
+Route::put('estampa/update/{estampa}','EstampasController@update')->name('estampa.update');
 
 //Estampas_Privadas
 Route::get('estampa/privadas','EstampasController@privadas')->name('estampas.privadas');
@@ -44,7 +47,8 @@ Route::get('carrinho/cart','CarrinhoController@index')->name('carrinho.index');
 Route::post('carrinho/cart','CarrinhoController@store')->name('carrinho.store');
 Route::delete('carrinho/cart/{id}','CarrinhoController@destroy')->name('carrinho.destroy');
 
-
+//PDF
+Route::get('encomenda/pdf/{encomenda}','EncomendasController@pdf')->name('encomenda.pdf');
 
 
 Auth::routes(['verify' => true]);

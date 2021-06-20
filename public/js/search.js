@@ -1,0 +1,1 @@
+$("#search_categoria").on("change",()=>{$("#form_search").submit()})

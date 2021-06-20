@@ -50,6 +50,7 @@ class UtilizadoresController extends Controller
         $cliente = Cliente::find($id)->update($request->except('_token', '_method'));
 
         if ($request->file('foto_url')) {
+            Storage::delete($request->file('foto_url'));
             $path = $request->file('foto_url')->store('public/fotos');
             $path = str_replace('public/fotos/', '', $path);
             DB::table('users')
