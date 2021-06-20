@@ -31,9 +31,6 @@ class EstampasController extends Controller
         $privada = false;
         $cores = Cor::all();
         $categorias = Categoria::all();
-        if($request->inputsearch or $request->categoria != null ){
-            return redirect()->back()->with(compact('estampas', 'cores', 'privada', 'categorias'));
-        }
         return view('estampa.list', compact('estampas', 'cores', 'privada', 'categorias'));
     }
 
