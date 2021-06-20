@@ -27,7 +27,7 @@
         <!-- Text input-->
         <div class="form-group col-7 ">
             <label class="control-label" for="nif">Nif</label>
-            <input id="nif" name="nif" type="text" placeholder="" class="form-control input-md" required=""
+            <input id="nif" name="nif" type="text" placeholder="" class="form-control input-md" 
                 value="{{ old('nif') ?? $cliente->nif ?? '' }}">
             @error('nif')
             <div class="error">
@@ -40,7 +40,7 @@
         <!-- Text input-->
         <div class="form-group col-7">
             <label class=" control-label" for="endereco">Endereço</label>
-            <input id="endereco" name="endereco" type="text" placeholder="" class="form-control input-md" required=""
+            <input id="endereco" name="endereco" type="text" placeholder="" class="form-control input-md" 
                 value="{{old('endereco') ?? $cliente->endereco ?? ''}}">
             @error('endereco')
             <div class="error">
@@ -54,7 +54,7 @@
         <div class="form-group col-7">
             <label class="control-label" for="tipo_pagamento">Tipo de Pagamento</label>
             <select id="tipo_pagamento" name="tipo_pagamento" class="form-control">
-                @if (isset($cliente))
+                <option value="" selected >--Metedo Pagamento--</option>
                 @foreach(["VISA" => "VISA", "MC" => "MC", "PAYPAL" => "PAYPAL"] AS $tipo_pagamento => $clienteLabel)
                 <option value="{{ $tipo_pagamento }}"
                     {{ old("tipo_pagamento", $cliente->tipo_pagamento) == $tipo_pagamento ? "selected" : "" }}>
@@ -87,7 +87,7 @@
         <div class="form-group col-7">
             <label class=" control-label" for="submit"></label>
             <button id="submit" name="submit" class="btn btn-secondary">Guardar</button>
-            <a href="{{route('estampas.list')}}" class="btn btn-danger">Cancelar</a>
+            <a href="{{route('estampas.list')}}" class="btn btn-danger">Sair</a>
         </div>
     </div>
 </fieldset>

@@ -8,6 +8,7 @@ use App\Estampa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Console\Input\Input;
 
 class EstampasController extends Controller
 {
@@ -21,7 +22,7 @@ class EstampasController extends Controller
             ->orWhere('descricao','like','%'.$request->inputsearch.'%');
         }
 
-        if ($request->categoria != null) {
+        if ($request->categoria_id != null) {
             $estampas->where('categoria_id', '=', $request->categoria_id);
         }
 
@@ -31,7 +32,9 @@ class EstampasController extends Controller
         $privada = false;
         $cores = Cor::all();
         $categorias = Categoria::all();
+        $request->flash();
         return view('estampa.list', compact('estampas', 'cores', 'privada', 'categorias'));
+
     }
 
     public function store(Request $request)

@@ -20,27 +20,32 @@
         </div>
         @endif
     </div>
+
     <form action="{{route('estampas.list')}}" method="GET">
         <div class="input-group justify-content-center">
             <div class="form-outline">
                 <input name="inputsearch" id="input_search" type="search" class="form-control" />
             </div>
+            @if(!$privada)
+            <div id="search_div_categoria" class="col-md justify-content-md-center">
+                <select id="search_categoria" name="categoria_id" class="form-control " onchange="">
+                    <option value="" selected >--Categoria--</option>
+                    @foreach($categorias as $categoria)
+                    <option value="{{$categoria->id}}" {{ old("categoria_id") == $categoria->id ? "selected" : "" }}>
+                        {{$categoria->nome}}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+            @endif
             <button id="btn_search" type="submit" class="btn btn-secondary">
                 <i class="fas fa-search"></i>
             </button>
+
         </div>
-        <div class="col-md">
-            <select name="categoria_id" class="form-control">
-                <option value="" selected disabled hidden>--</option>
-                @foreach($categorias as $categoria)
-                <option value="{{$categoria->id}}"
-                     {{ old("categoria_id") == $categoria->id ? "selected" : "" }}>
-                    {{$categoria->id}}              
-                </option>
-                @endforeach
-            </select>
-        </div>
+
     </form>
+
     <table class="table table-bordered table-striped table-sm">
         <tbody>
             <div class="row">

@@ -27,6 +27,11 @@
 }
 
 #input_search{
-    width: 400px;
+    width: 600px;
+}
+
+#search_categoria{
+    width: 200px;    
+    margin-bottom: 15px;
 }
 
