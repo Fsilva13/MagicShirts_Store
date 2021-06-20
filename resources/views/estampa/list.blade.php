@@ -20,19 +20,36 @@
         </div>
         @endif
     </div>
+    <form action="{{route('estampas.list')}}" method="GET">
+        <div class="input-group justify-content-center">
+            <div class="form-outline">
+                <input name="inputsearch" id="input_search" type="search" class="form-control" />
+            </div>
+            <button id="btn_search" type="submit" class="btn btn-secondary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <div class="col-md">
+            <select name="categoria_id" class="form-control">
+                <option value="" selected disabled hidden>--</option>
+                @foreach($categorias as $categoria)
+                <option value="{{$categoria->id}}"
+                     {{ old("categoria_id") == $categoria->id ? "selected" : "" }}>
+                    {{$categoria->id}}              
+                </option>
+                @endforeach
+            </select>
+        </div>
+    </form>
     <table class="table table-bordered table-striped table-sm">
         <tbody>
             <div class="row">
                 @forelse($estampas as $estampa)
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        
-                        <img class="product-imagem"
-                            data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-                            alt="Thumbnail [100%x225]"
-                            src="{{$estampa->cliente_id ? route('estampas.privadas.imagem', $estampa->id) : asset('storage/estampas/' . $estampa->imagem_url) }}"
-                            data-holder-rendered="true">                          
-                        
+
+                        <img class="product-imagem" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" src="{{$estampa->cliente_id ? route('estampas.privadas.imagem', $estampa->id) : asset('storage/estampas/' . $estampa->imagem_url) }}" data-holder-rendered="true">
+
                         <div class="card-body">
                             <p class="text-sm-left">Nome: {{ $estampa->nome}}</p>
 
@@ -45,32 +62,27 @@
                                         <input type="hidden" name="id" value="{{$estampa->id}}">
 
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-secondary" data-toggle="modal"
-                                            data-target="#modal{{$estampa->id}}">
+                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal{{$estampa->id}}">
                                             Escolher Tshirt
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="modal{{$estampa->id}}" tabindex="-1" role="dialog"
-                                            aria-labelledby="ModalCenterTitle" aria-hidden="true">
+                                        <div class="modal fade" id="modal{{$estampa->id}}" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLongTitle">Escolher
                                                             Tshirt
                                                         </h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
 
                                                     <div class="modal-body">
-                                                        <label class="col-md control-label"
-                                                            for="tamanho">Tamanho</label>
+                                                        <label class="col-md control-label" for="tamanho">Tamanho</label>
                                                         <div class="col-md">
-                                                            <select required name="tamanho"
-                                                                class="form-control">
+                                                            <select required name="tamanho" class="form-control">
                                                                 <option value="" selected disabled hidden>--</option>
                                                                 <option value="XS">
                                                                     XS
@@ -91,8 +103,7 @@
                                                         </div>
                                                         <label class="col-md control-label" for="cor_codigo">Cor</label>
                                                         <div class="col-md">
-                                                            <select required  name="cor_codigo"
-                                                                class="form-control">
+                                                            <select required name="cor_codigo" class="form-control">
                                                                 <option value="" selected disabled hidden>--</option>
                                                                 @foreach($cores as $cor)
                                                                 <option value="{{$cor->codigo}}">
@@ -101,16 +112,13 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        <label class="col-md control-label"
-                                                            for="tamanho">Quantidade</label>
+                                                        <label class="col-md control-label" for="tamanho">Quantidade</label>
                                                         <div class="col-md">
-                                                            <input type="number" name="quantidade" class="form-control"
-                                                                min="1">
+                                                            <input type="number" name="quantidade" value="1" class="form-control" min="1">
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-secondary">Adicionar
                                                             Carrinho</button>
                                                     </div>
@@ -129,7 +137,7 @@
                 @csrf
                 @empty
                 <tr>
-                    <td colspan="6">Nenhum registro encontrado para listar</td>
+                    <td colspan="6">Nenhum registo encontrado para listar</td>
                 </tr>
                 @endforelse
             </div>

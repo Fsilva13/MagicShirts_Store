@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @include('layouts.messages')
-@section('title', 'Listar todos os registros')
+@section('title', 'Listar todos os utilizadores')
 
 @section('content')
 <h1>Listagem de Clientes</h1>
@@ -28,7 +28,7 @@
                 <td>
                     <a href="{{ route('utilizador.edit', ['id' => $clt->id]) }}" class="btn btn-warning btn-sm">Editar</a>
                     <form method="POST" action="{{ route('utilizador.destroy', ['id' => $clt->id]) }}"
-                        style="display: inline" onsubmit="return confirm('Deseja excluir este registro?');">
+                        style="display: inline" onsubmit="return confirm('Deseja excluir este utilizador?');">
                         @csrf
                         <input type="hidden" name="_method" value="delete">
                         <button class="btn btn-danger btn-sm">Excluir</button>
@@ -37,7 +37,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="6">Nenhum registro encontrado para listar</td>
+                <td colspan="6">Nenhum registo encontrado para listar</td>
             </tr>
             @endforelse
         </tbody>

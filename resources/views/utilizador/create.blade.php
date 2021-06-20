@@ -61,11 +61,6 @@
                     {{ $clienteLabel }}
                 </option>
                 @endforeach
-                @else
-                <option value="VISA" {{old('tipo_pagamento')}}=={{ 'VISA'? 'Selected' : ''}}>VISA</option>
-                <option value="MC" {{old('tipo_pagamento')}}=={{'MC'? 'Selected' : ''}}>MC</option>
-                <option value="PAYPAL" {{old('tipo_pagamento')}}=={{ 'PAYPAL'? 'Selected' : ''}}>PAYPAL</option>
-                @endif
             </select>
             @error('tipo_pagamento')
             <div class="error">

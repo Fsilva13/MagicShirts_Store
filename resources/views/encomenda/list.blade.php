@@ -52,7 +52,7 @@
       </tr>
       @empty
       <tr>
-        <td colspan="6">Nenhum registro encontrado para listar</td>
+        <td colspan="6">Nenhum registo encontrado para listar</td>
       </tr>
       @endforelse
     </tbody>

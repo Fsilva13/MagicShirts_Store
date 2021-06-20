@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use PDF;
 
 class EncomendasController extends Controller
 {
@@ -24,10 +26,10 @@ class EncomendasController extends Controller
 
 		switch ($tipo_user) {
 			case 'C':
-				$encomendas = Encomenda::where('cliente_id', '=' , Auth::user()->id )->paginate(15);
+				$encomendas = Encomenda::where('cliente_id', '=', Auth::user()->id)->paginate(15);
 				break;
 			case 'F':
-				$encomendas = Encomenda::whereIn('estado', ['pendente','paga'] )->paginate(15);
+				$encomendas = Encomenda::whereIn('estado', ['pendente', 'paga'])->paginate(15);
 				break;
 			case 'A':
 				$encomendas = Encomenda::paginate(15);
@@ -113,12 +115,12 @@ class EncomendasController extends Controller
 		}
 
 		if ($encomenda) {
-			Session::flash('success', "Registro #{$encomenda->id} criada com sucesso!");
+			Session::flash('success', "A encomenda #{$encomenda->id} foi criada com sucesso!");
 			Cart::destroy();
 			Mail::to(Auth::user()->email)->send(new NotificarPendente($encomenda));
 			return redirect()->route('estampas.list');
 		}
-		return redirect()->back()->withErrors(['error', "Registo não foi salvo."]);
+		return redirect()->back()->withErrors(['error', "Erro na Encomenda!"]);
 	}
 
 	public function create()
@@ -131,16 +133,23 @@ class EncomendasController extends Controller
 		$request->validate(['estado' => ['required', Rule::in(['paga', 'fechada'])]]);
 
 		$encomenda->estado = request()->estado;
-		
-		$encomenda->save();
-		
-		if($request->estado == 'paga'){
+
+		if ($request->estado == 'paga') {
 			Mail::to(Auth::user()->email)->send(new NotificarPaga($encomenda));
-		}else{
-			Mail::to(Auth::user()->email)->send(new NotificarFechada($encomenda));
+		} else {		
+			// Generate PDF
+			// share data to view
+        	$pdf = PDF::loadView('pdf.pdf_view', compact('encomenda'));
 			
+			Storage::put('pdf_recibos/'.$encomenda->id.'.pdf', $pdf->output());
+
+			$encomenda->recibo_url = $encomenda->id.'.pdf';
+
+			Mail::to(Auth::user()->email)->send(new NotificarFechada($encomenda));
 		}
 
-		return redirect()->back()->with(['success', "Registro #{$encomenda->id} atualizado com êxito"]);
+		$encomenda->save();
+
+		return redirect()->back()->with(['success', "A encomenda #{$encomenda->id} foi atualizada com sucesso!"]);
 	}
 }

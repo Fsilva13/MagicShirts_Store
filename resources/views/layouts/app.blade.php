@@ -14,6 +14,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -79,21 +80,20 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('estampas.list') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-
-                                <a href="{{route('utilizador.edit', ['id' => Auth::id()]) }}" class="dropdown-item">Dados da Conta</a>
+                               
                                 @if (Auth::user()->cliente)
                                 <a class="dropdown-item" href="{{ route('encomenda.list') }}">Historico de
                                     Encomendas</a>
+                                    <a href="{{route('utilizador.edit', ['id' => Auth::id()]) }}" class="dropdown-item">Dados da Conta</a>
                                 @endif
                                 <!-- Button trigger modal -->
                                 <button type="button" class="dropdown-item" data-toggle="modal" data-target="#passModalCenter">
                                     Alterar Password
                                 </button>
+                                <a class="dropdown-item" href="{{ route('estampas.list') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 
@@ -105,7 +105,7 @@
                     </ul>
                     <!-- MINI-CART -->
                     @if(Auth::guest() or Auth::user()->tipo == 'C')
-                    <a class="show-mini-cart" href="{{ route('carrinho.index') }}">Carrinho <span class="cart_count">
+                    <a class="show-mini-cart badge badge-light" href="{{ route('carrinho.index') }}">Carrinho <span class="cart_count">
                             @if(Cart::instance('default')->count() > 0)
                             {{Cart::instance('default')->count()}}
                             @endif

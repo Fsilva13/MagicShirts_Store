@@ -30,6 +30,7 @@ Route::get('utilizador/edit/{id}','UtilizadoresController@edit')->name('utilizad
 Route::put('utilizador/update/{id}','UtilizadoresController@update')->name('utilizador.update');
 Route::put('utilizador/password','UtilizadoresController@password')->name('utilizador.password');
 
+
 //Estampa
 Route::get('estampa/create','EstampasController@create')->name('estampa.create');
 Route::post('estampa/store','EstampasController@store')->name('estampa.store');
@@ -44,4 +45,6 @@ Route::post('carrinho/cart','CarrinhoController@store')->name('carrinho.store');
 Route::delete('carrinho/cart/{id}','CarrinhoController@destroy')->name('carrinho.destroy');
 
 
-Auth::routes();
+
+
+Auth::routes(['verify' => true]);

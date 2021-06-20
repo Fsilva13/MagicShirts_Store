@@ -111,7 +111,7 @@
         <div class="form-group">
             <label class="col-md-8 control-label" for="button1id"></label>
             <div class="col-md-8">
-                <button id="submit" name="submit" class="btn btn-success">Criar</button>
+                <button id="submit" name="submit" class="btn btn-secondary">Finalizar Compra</button>
                 <a href="{{route('carrinho.index')}}" class="btn btn-danger">Cancelar</a>
             </div>
         </div>

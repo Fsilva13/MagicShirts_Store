@@ -20,3 +20,13 @@
     margin-bottom:0px;
 }
 
+#btn_search{
+    height: fit-content;
+    margin-bottom: 10px;
+    width: 100px;
+}
+
+#input_search{
+    width: 400px;
+}
+

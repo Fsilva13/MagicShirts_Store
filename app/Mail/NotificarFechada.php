@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
+
 class NotificarFechada extends Mailable
 {
     use Queueable, SerializesModels;
@@ -22,6 +23,7 @@ class NotificarFechada extends Mailable
     public function __construct(Encomenda $encomenda)
     {
         $this->encomenda = $encomenda;
+
     }
 
     /**
@@ -32,6 +34,7 @@ class NotificarFechada extends Mailable
     public function build()
     {
         return $this->from('MagicShirts@mail.com')
+        ->attach(storage_path('/app/pdf_recibos/'.$this->encomenda->recibo_url))
         ->view('emails.fechada')->withEncomenda($this->encomenda);
     }
 }

@@ -28,11 +28,11 @@ class UtilizadoresController extends Controller
 
         if ($cliente) {
 
-            Session::flash('success', "Registro excluído com êxito");
+            Session::flash('success', "Utilizador excluído com êxito");
 
             return redirect()->route('utilizador.list');
         }
-        return redirect()->back()->withErrors(['error', "Registo não pode ser excluído"]);
+        return redirect()->back()->withErrors(['error', "Utilizador não pode ser excluído"]);
     }
 
     public function edit($id)

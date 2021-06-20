@@ -68,7 +68,7 @@ class CarrinhoController extends Controller
 
         Session::flash('success', "Item Adicionado!");
 
-        return redirect()->route('carrinho.index');
+        return redirect()->route('estampas.list');
     }
 
     /**
