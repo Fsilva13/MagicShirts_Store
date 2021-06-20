@@ -32,6 +32,6 @@ class NotificarPaga extends Mailable
     public function build()
     {
         return $this->from('MagicShirts@mail.com')
-        ->view('emails.pendente')->withEncomenda($this->encomenda);
+        ->view('emails.paga')->withEncomenda($this->encomenda);
     }
 }

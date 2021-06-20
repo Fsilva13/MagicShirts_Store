@@ -12,7 +12,7 @@ class Cliente extends Model
     ];
 
     public function encomendas(){
-        return $this->haMany('App\Encomenda');
+        return $this->hasMany('App\Encomenda');
     }
 
     public function user(){

@@ -113,7 +113,6 @@ aside {
 }
 
 label {
-  display: block;
   margin-bottom: 0.3125rem;
 }
 
@@ -415,5 +414,6 @@ aside {
 
 #carrinho_encomendas{
   overflow-y:scroll ;
-  height: 600px;
+  max-height: 600px;
+
 }

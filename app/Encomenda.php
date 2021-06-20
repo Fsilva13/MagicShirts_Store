@@ -11,7 +11,7 @@ class Encomenda extends Model
 	'preco_total','notas','nif','endereco','tipo_pagamento','ref_pagamento'
     ];
 
-    public function clientes(){
+    public function cliente(){
       return $this->belongsTo('App\Cliente');
     }
     

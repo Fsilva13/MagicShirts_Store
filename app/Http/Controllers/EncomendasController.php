@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Encomenda;
+use App\Mail\NotificarFechada;
+use App\Mail\NotificarPaga;
 use App\Mail\NotificarPendente;
 use App\Preco;
 use App\Tshirt;
@@ -18,8 +20,20 @@ class EncomendasController extends Controller
 
 	public function index()
 	{
-		$encomenda = Encomenda::paginate(15);
-		return view('Encomenda.list', compact('encomenda'));
+		$tipo_user = Auth::user()->tipo;
+
+		switch ($tipo_user) {
+			case 'C':
+				$encomendas = Encomenda::where('cliente_id', '=' , Auth::user()->id )->paginate(15);
+				break;
+			case 'F':
+				$encomendas = Encomenda::whereIn('estado', ['pendente','paga'] )->paginate(15);
+				break;
+			case 'A':
+				$encomendas = Encomenda::paginate(15);
+				break;
+		}
+		return view('Encomenda.list', compact('encomendas'));
 	}
 
 	public function store(Request $request)
@@ -97,7 +111,7 @@ class EncomendasController extends Controller
 				]);
 			}
 		}
-			
+
 		if ($encomenda) {
 			Session::flash('success', "Registro #{$encomenda->id} criada com sucesso!");
 			Cart::destroy();
@@ -112,39 +126,21 @@ class EncomendasController extends Controller
 		return view('encomenda.create');
 	}
 
-	public function edit($id)
+	public function update(Request $request, Encomenda $encomenda)
 	{
-		$encomenda = Encomenda::findOrFail($id);
+		$request->validate(['estado' => ['required', Rule::in(['paga', 'fechada'])]]);
 
-		if ($encomenda) {
-			return view('encomenda.create', compact('encomenda'));
-		} else {
-			return redirect()->back();
+		$encomenda->estado = request()->estado;
+		
+		$encomenda->save();
+		
+		if($request->estado == 'paga'){
+			Mail::to(Auth::user()->email)->send(new NotificarPaga($encomenda));
+		}else{
+			Mail::to(Auth::user()->email)->send(new NotificarFechada($encomenda));
+			
 		}
-	}
 
-	public function update(Request $request, $id)
-	{
-		$encomenda = Encomenda::find($id)->update($request->except('_token', '_method'));
-
-		if ($encomenda) {
-			Session::flash('success', "Registro #{$id} atualizado com êxito");
-
-			return redirect()->route('encomenda.list');
-		}
-		return redirect()->back()->withErrors(['error', "Registo #{$id} não foi encontrado"]);
-	}
-
-	public function destroy($id)
-	{
-		$encomenda = Encomenda::find($id)->delete();
-
-		if ($encomenda) {
-
-			Session::flash('success', "Registro #{$id} excluído com êxito");
-
-			return redirect()->route('cliente.list');
-		}
-		return redirect()->back()->withErrors(['error', "Registo #{$id} não pode ser excluído"]);
+		return redirect()->back()->with(['success', "Registro #{$encomenda->id} atualizado com êxito"]);
 	}
 }

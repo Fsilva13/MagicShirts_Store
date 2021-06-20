@@ -69,7 +69,7 @@
                                                         <label class="col-md control-label"
                                                             for="tamanho">Tamanho</label>
                                                         <div class="col-md">
-                                                            <select required id="tamanho" name="tamanho"
+                                                            <select required name="tamanho"
                                                                 class="form-control">
                                                                 <option value="" selected disabled hidden>--</option>
                                                                 <option value="XS">
@@ -91,7 +91,7 @@
                                                         </div>
                                                         <label class="col-md control-label" for="cor_codigo">Cor</label>
                                                         <div class="col-md">
-                                                            <select required id="cor_codigo" name="cor_codigo"
+                                                            <select required  name="cor_codigo"
                                                                 class="form-control">
                                                                 <option value="" selected disabled hidden>--</option>
                                                                 @foreach($cores as $cor)

@@ -4,7 +4,7 @@
 @section('content')
 @include('layouts.messages')
 
-{!! Form::model($cliente, ['method' => 'put', 'route' => ['cliente.update', $cliente->id ], 'class' =>'form-horizontal', 'enctype' => "multipart/form-data"]) !!}
+{!! Form::model($cliente, ['method' => 'put', 'route' => ['utilizador.update', $cliente->id ], 'class' =>'form-horizontal', 'enctype' => "multipart/form-data"]) !!}
 
 @CSRF
 <fieldset>
@@ -19,8 +19,8 @@
                 data-holder-rendered="true">
         </div>
         <div class="form-group justify-content-md-center col-7">
-            <label class="control-label" for="filebutton">Upload Foto</label>
-            <input name="foto_url" class="file-input" type="file">
+            <label style="display:block" class="control-label" for="filebutton">Alterar Foto</label>
+            <input id="filebutton" name="foto_url" class="file-input" type="file">
 
         </div>
 

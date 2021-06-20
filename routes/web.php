@@ -21,15 +21,14 @@ Route::get('/','EstampasController@index')->name('estampas.list');
 Route::get('encomenda/list','EncomendasController@index')->name('encomenda.list');
 Route::get('encomenda/create','EncomendasController@create')->name('encomenda.create');
 Route::post('encomenda/store','EncomendasController@store')->name('encomenda.store');
-Route::delete('encomenda/destroy/{id}','EncomendasController@destroy')->name('encomenda.destroy');
-Route::get('encomenda/edit/{id}','EncomendasController@edit')->name('encomenda.edit');
-Route::put('encomenda/update/{id}','EncomendasController@update')->name('encomenda.update');
+Route::patch('encomenda/update/{encomenda}','EncomendasController@update')->name('encomenda.update');
 
-//Cliente
-Route::get('cliente/list','ClientesController@index')->name('cliente.list');
-Route::delete('cliente/destroy/{id}','ClientesController@destroy')->name('cliente.destroy');
-Route::get('cliente/edit/{id}','ClientesController@edit')->name('cliente.edit');
-Route::put('cliente/update/{id}','ClientesController@update')->name('cliente.update');
+//Utilizador
+Route::get('utilizador/list','UtilizadoresController@index')->name('utilizador.list');
+Route::delete('utilizador/destroy/{id}','UtilizadoresController@destroy')->name('utilizador.destroy');
+Route::get('utilizador/edit/{id}','UtilizadoresController@edit')->name('utilizador.edit');
+Route::put('utilizador/update/{id}','UtilizadoresController@update')->name('utilizador.update');
+Route::put('utilizador/password','UtilizadoresController@password')->name('utilizador.password');
 
 //Estampa
 Route::get('estampa/create','EstampasController@create')->name('estampa.create');
@@ -43,5 +42,6 @@ Route::get('estampa/privadas/{estampa}','EstampasController@imagem')->name('esta
 Route::get('carrinho/cart','CarrinhoController@index')->name('carrinho.index');
 Route::post('carrinho/cart','CarrinhoController@store')->name('carrinho.store');
 Route::delete('carrinho/cart/{id}','CarrinhoController@destroy')->name('carrinho.destroy');
+
 
 Auth::routes();

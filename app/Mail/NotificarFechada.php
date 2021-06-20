@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Encomenda;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,14 +12,16 @@ class NotificarFechada extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $encomenda;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Encomenda $encomenda)
     {
-        //
+        $this->encomenda = $encomenda;
     }
 
     /**
@@ -28,6 +31,7 @@ class NotificarFechada extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->from('MagicShirts@mail.com')
+        ->view('emails.fechada')->withEncomenda($this->encomenda);
     }
 }
