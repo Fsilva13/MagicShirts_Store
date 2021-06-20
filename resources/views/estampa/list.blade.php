@@ -19,15 +19,17 @@
             </div>
         </div>
         @endif
-        @if( Auth::user()->tipo == 'A')
-        <a id="btn_estampas" href="{{route('estampa.create')}}" class="btn btn-secondary btn-block btn-lg">Criar Estampa</a>
+        @if(Auth::check() and Auth::user()->tipo == 'A')
+        <a id="btn_estampas" href="{{route('estampa.create')}}" class="btn btn-secondary btn-block btn-lg">Criar
+            Estampa</a>
         @endif
     </div>
 
     <form id="form_search" action="{{route('estampas.list')}}" method="GET">
         <div class="input-group justify-content-center">
             <div class="form-outline">
-                <input value="{{old('inputsearch')}}" name="inputsearch" id="input_search" type="search" class="form-control" />
+                <input value="{{old('inputsearch')}}" name="inputsearch" id="input_search" type="search"
+                    class="form-control" />
             </div>
             @if(!$privada)
             <div id="search_div_categoria" class="col-md justify-content-md-center">
@@ -56,7 +58,11 @@
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
 
-                        <img class="product-imagem" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" src="{{$estampa->cliente_id ? route('estampas.privadas.imagem', $estampa->id) : asset('storage/estampas/' . $estampa->imagem_url) }}" data-holder-rendered="true">
+                        <img class="product-imagem"
+                            data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                            alt="Thumbnail [100%x225]"
+                            src="{{$estampa->cliente_id ? route('estampas.privadas.imagem', $estampa->id) : asset('storage/estampas/' . $estampa->imagem_url) }}"
+                            data-holder-rendered="true">
 
                         <div class="card-body">
                             <p class="text-sm-left">Nome: {{ $estampa->nome}}</p>
@@ -64,31 +70,35 @@
                             <p class="card-text">Descricao: {{ $estampa->descricao}}</p><br>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    @if(Auth::check() and Auth::user()->tipo == 'C')
+                                    @if(Auth::check() and Auth::user()->tipo == 'C' or Auth::guest() )
                                     <form action="{{route('carrinho.store')}}" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$estampa->id}}">
 
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal{{$estampa->id}}">
+                                        <button type="button" class="btn btn-secondary" data-toggle="modal"
+                                            data-target="#modal{{$estampa->id}}">
                                             Escolher Tshirt
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="modal{{$estampa->id}}" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+                                        <div class="modal fade" id="modal{{$estampa->id}}" tabindex="-1" role="dialog"
+                                            aria-labelledby="ModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLongTitle">Escolher
                                                             Tshirt
                                                         </h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
 
                                                     <div class="modal-body">
-                                                        <label class="col-md control-label" for="tamanho">Tamanho</label>
+                                                        <label class="col-md control-label"
+                                                            for="tamanho">Tamanho</label>
                                                         <div class="col-md">
                                                             <select required name="tamanho" class="form-control">
                                                                 <option value="" selected disabled hidden>--</option>
@@ -120,13 +130,16 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        <label class="col-md control-label" for="tamanho">Quantidade</label>
+                                                        <label class="col-md control-label"
+                                                            for="tamanho">Quantidade</label>
                                                         <div class="col-md">
-                                                            <input type="number" name="quantidade" value="1" class="form-control" min="1">
+                                                            <input type="number" name="quantidade" value="1"
+                                                                class="form-control" min="1">
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-secondary">Adicionar
                                                             Carrinho</button>
                                                     </div>
@@ -136,17 +149,21 @@
                                     </form>
                                     @else
                                     <form action="{{route('estampa.edit',$estampa->id)}}" method="GET">
-                                    @csrf
-                                        <button type="submit" class="btn btn-secondary" data-toggle="modal">
-                                            Actualizar
-                                        </button>
+                                        @csrf
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-secondary" data-toggle="modal">
+                                                Actualizar
+                                            </button>
+                                        </div>
                                     </form>
                                     <form action="{{route('estampa.destroy',$estampa->id)}}" method="POST">
-                                    @csrf
+                                        @csrf
                                         {{method_field('DELETE')}}
-                                        <button type="submit" class="btn btn-secondary" data-toggle="modal">
-                                            Apagar
-                                        </button>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-secondary" data-toggle="modal">
+                                                Apagar
+                                            </button>
+                                        </div>
                                     </form>
                                     @endif
                                 </div>
