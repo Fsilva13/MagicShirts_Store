@@ -3,7 +3,7 @@
 @section('content')
 @include('layouts.messages')´
 
-@if($estampa)
+@if(isset($estampa))
 <form enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{route('estampa.update', $estampa->id)}}">
   {{method_field('PUT')}}
   @else

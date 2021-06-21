@@ -18,7 +18,9 @@
                 <th>Endereço</th>
                 <th>Tipo de Pagamento</th>
                 <th>Ref. Pagamento</th>
+                @if(Auth::user()->tipo == 'C' and Auth::user()->tipo == 'A' )
                 <th style="text-align: center;">Fatura PDF</th>
+                @endif
             </tr>
         </thead>
         <tbody>
