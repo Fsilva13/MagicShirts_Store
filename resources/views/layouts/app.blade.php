@@ -57,9 +57,35 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        
                         @if(Auth::user() and Auth::user()->tipo != 'C')
                         <a href="{{ route('encomenda.list') }}">Lista Encomendas</a>
+                        @endif                        
+                        <div style="margin-left: 10px;">
+                        @if(Auth::user() and Auth::user()->tipo == 'A')
+                        <a href="{{ route('utilizador.list') }}">| Lista Clientes</a>
                         @endif
+                        </div>
+                        <div style="margin-left: 10px;">
+                        @if(Auth::user() and Auth::user()->tipo == 'A')
+                        <a href="{{ route('utilizador.create') }}">| Criar Conta Utilizador</a>
+                        @endif
+                        </div>
+                        <div style="margin-left: 10px;">
+                        @if(Auth::user() and Auth::user()->tipo == 'A')
+                        <a href="{{route('cor.list')}}">| Gerir Cores</a>
+                        @endif
+                        </div>
+                        <div style="margin-left: 10px;">
+                        @if(Auth::user() and Auth::user()->tipo == 'A')
+                        <a href="{{route('preco.list')}}">| Gerir Preços</a>
+                        @endif
+                        </div>
+                        <div style="margin-left: 10px;">
+                        @if(Auth::user() and Auth::user()->tipo == 'A')
+                        <a href="">| Estatisticas</a>
+                        @endif
+                        </div>
                     </ul>
 
 

@@ -25,11 +25,13 @@ Route::patch('encomenda/update/{encomenda}','EncomendasController@update')->name
 
 //Utilizador
 Route::get('utilizador/list','UtilizadoresController@index')->name('utilizador.list');
-Route::delete('utilizador/{id}','UtilizadoresController@destroy')->name('utilizador.destroy');
+Route::delete('utilizador/{user}','UtilizadoresController@destroy')->name('utilizador.destroy');
 Route::get('utilizador/edit/{id}','UtilizadoresController@edit')->name('utilizador.edit');
 Route::put('utilizador/update/{id}','UtilizadoresController@update')->name('utilizador.update');
 Route::put('utilizador/password','UtilizadoresController@password')->name('utilizador.password');
-
+Route::patch('utilizador/bloquear/{user}','UtilizadoresController@bloquear')->name('utilizador.bloquear');
+Route::get('utilizador/create','UtilizadoresController@create')->name('utilizador.create');
+Route::post('utilizador/store','UtilizadoresController@store')->name('utilizador.store');
 
 //Estampa
 Route::get('estampa/create','EstampasController@create')->name('estampa.create');
@@ -50,5 +52,15 @@ Route::delete('carrinho/cart/{id}','CarrinhoController@destroy')->name('carrinho
 //PDF
 Route::get('encomenda/pdf/{encomenda}','EncomendasController@pdf')->name('encomenda.pdf');
 
+//Cores
+Route::get('cor/list','CoresController@index')->name('cor.list');
+Route::get('cor/edit/{id}','CoresController@edit')->name('cor.edit');
+Route::put('cor/update/{id}','CoresController@update')->name('cor.update');
+Route::delete('cor/{id}','CoresController@destroy')->name('cor.destroy');
+
+//Preco
+Route::get('preco/list','PrecosController@index')->name('preco.list');
+Route::get('preco/edit/{id}','PrecosController@edit')->name('preco.edit');
+Route::put('preco/update/{id}','PrecosController@update')->name('preco.update');
 
 Auth::routes(['verify' => true]);

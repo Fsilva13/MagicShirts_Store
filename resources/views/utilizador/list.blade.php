@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@include('layouts.messages')
-@section('title', 'Listar todos os utilizadores')
+
 
 @section('content')
+@include('layouts.messages')
 <h1>Listagem de Clientes</h1>
 <hr>
 <div class="container">
@@ -11,28 +11,46 @@
             <tr>
                 <th>#</th>
                 <th>Nome</th>
-                <th>Nif</th>
-                <th>Tipo de Pagamento</th>
-                <th>Ref. Pagamento</th>
+                <th>Email</th>
+                <th>Tipo de Utilizador</th>
+                <th>Bloqueado</th>
                 </th>
             </tr>
         </thead>
         <tbody>
-            @forelse($cliente as $clt)
+            @forelse($users as $user)
             <tr>
-                <td>{{ $clt->id }}</td>
-                <td>{{ $clt->user->name }}</td>
-                <td>{{ $clt->nif }}</td>
-                <td>{{ $clt->tipo_pagamento }}</td>
-                <td>{{ $clt->ref_pagamento }}</td>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->tipo }}</td>
+                <td>{{$user->bloqueado == '1'? 'Bloqueado' : ''}}</td>
                 <td>
-                    <a href="{{ route('utilizador.edit', ['id' => $clt->id]) }}" class="btn btn-warning btn-sm">Editar</a>
-                    <form method="POST" action="{{ route('utilizador.destroy', ['id' => $clt->id]) }}"
+                    <form method="POST" action="{{ route('utilizador.bloquear', ['user' => $user->id]) }}"
+                        style="display: inline">
+                        @csrf
+                        <input type="hidden" name="_method" value="patch">
+                        <button class="btn btn-warning btn-sm">{{$user->bloqueado == '1'? 'Desbloquear' : 'Bloquear'}}</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" action="{{ route('utilizador.destroy', ['user' => $user->id]) }}"
                         style="display: inline" onsubmit="return confirm('Deseja excluir este utilizador?');">
                         @csrf
                         <input type="hidden" name="_method" value="delete">
                         <button class="btn btn-danger btn-sm">Excluir</button>
                     </form>
+
+                </td>
+                @if($user->tipo != 'C')
+                <td>
+                    <form method="GET" action="{{ route('utilizador.edit', $user->id) }}"
+                        style="display: inline">
+                        @csrf
+                        <input type="hidden" name="_method" value="get">
+                        <button class="btn btn-secondary btn-sm">Editar</button>
+                    </form>
+                @endif
                 </td>
             </tr>
             @empty
@@ -42,6 +60,6 @@
             @endforelse
         </tbody>
     </table>
-    {{ $cliente->links() }}
+    {{ $users->links() }}
 </div>
 @endsection

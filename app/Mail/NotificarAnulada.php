@@ -29,6 +29,6 @@ class NotificarAnulada extends Mailable
     public function build()
     {
         return $this->from('MagicShirts@mail.com')
-        ->view('emails.anulada')->withEncomenda();
+        ->view('emails.anulada');
     }
 }

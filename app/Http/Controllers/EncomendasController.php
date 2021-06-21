@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Encomenda;
+use App\Mail\NotificarAnulada;
 use App\Mail\NotificarFechada;
 use App\Mail\NotificarPaga;
 use App\Mail\NotificarPendente;
@@ -130,13 +131,13 @@ class EncomendasController extends Controller
 
 	public function update(Request $request, Encomenda $encomenda)
 	{
-		$request->validate(['estado' => ['required', Rule::in(['paga', 'fechada'])]]);
+		$request->validate(['estado' => ['required', Rule::in(['paga', 'fechada','anulada'])]]);
 
 		$encomenda->estado = request()->estado;
 
 		if ($request->estado == 'paga') {
 			Mail::to(Auth::user()->email)->send(new NotificarPaga($encomenda));
-		} else {
+		} elseif($request->estado == 'fechada') {
 			// Generate PDF
 			// share data to view
 			$pdf = PDF::loadView('pdf.pdf_view', compact('encomenda'));
@@ -146,6 +147,8 @@ class EncomendasController extends Controller
 			$encomenda->recibo_url = $encomenda->id . '.pdf';
 
 			Mail::to(Auth::user()->email)->send(new NotificarFechada($encomenda));
+		}else{
+			Mail::to(Auth::user()->email)->send(new NotificarAnulada());
 		}
 
 		$encomenda->save();
@@ -165,4 +168,5 @@ class EncomendasController extends Controller
 
 		abort(404,'Ficheiro não encontrado!');
 	}
+
 }

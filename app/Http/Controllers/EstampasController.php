@@ -133,13 +133,18 @@ class EstampasController extends Controller
         $request->validate($rules, $messages); //verifica rules
 
         $estampa->nome = request()->nome;
+        
         $estampa->descricao = request()->descricao;
 
         if ($request->imagem) {
 
+            Storage::delete('public/estampas/' . $estampa->imagem_url);
+
             Storage::put('public/estampas', $request->imagem);
-            Storage::delete($estampa->imagem_url);
+
+            $estampa->imagem_url = request()->imagem->hashName();
         }
+
         $estampa->save();
 
         return redirect()->route('estampas.list')->with('success', "Estampa actualizada com êxito");
