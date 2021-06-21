@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.messages')´
+@include('layouts.messages')
 
 @if(isset($estampa))
 <form enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{route('estampa.update', $estampa->id)}}">

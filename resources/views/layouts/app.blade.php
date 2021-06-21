@@ -83,7 +83,7 @@
                         </div>
                         <div style="margin-left: 10px;">
                         @if(Auth::user() and Auth::user()->tipo == 'A')
-                        <a href="">| Estatisticas</a>
+                        <a href="{{route('estatisticas.index')}}">| Estatisticas</a>
                         @endif
                         </div>
                     </ul>
@@ -207,4 +207,3 @@
 
 </body>
 
-</html>

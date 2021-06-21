@@ -63,4 +63,7 @@ Route::get('preco/list','PrecosController@index')->name('preco.list');
 Route::get('preco/edit/{id}','PrecosController@edit')->name('preco.edit');
 Route::put('preco/update/{id}','PrecosController@update')->name('preco.update');
 
+//Estatisticas
+Route::get('estatisticas','EstatisticasController@index')->name('estatisticas.index');
+
 Auth::routes(['verify' => true]);
