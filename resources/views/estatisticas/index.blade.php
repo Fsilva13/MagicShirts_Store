@@ -4,7 +4,7 @@
 @include('layouts.messages')
 
 
-<!-- Estilos customizados para esse template -->
+<!-- Estilos customizados para este template -->
 <link href="estatisticas.css" rel="stylesheet">
 
 
@@ -38,19 +38,8 @@
                                 Clientes
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="bar-chart-2"></span>
-                                Relatórios
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="layers"></span>
-                                Integrações
-                            </a>
-                        </li>
-                    </ul>                
+
+                    </ul>
                 </div>
             </nav>
 
@@ -199,7 +188,7 @@
             </main>
         </div>
     </div>
-  
+
     <!-- Principal JavaScript do Bootstrap
     ================================================== -->
     <!-- Foi colocado no final para a página carregar mais rápido -->
@@ -227,7 +216,7 @@
         data: {
             labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
             datasets: [{
-                data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+                data: [15339, 21345, 18483, 24003, 23489, 24092, 52034],
                 lineTension: 0,
                 backgroundColor: 'transparent',
                 borderColor: '#007bff',

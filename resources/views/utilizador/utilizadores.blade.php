@@ -6,9 +6,8 @@
 
 
 @if(isset($user))
-{!! Form::model($user, ['method' => 'post', 'route' => ['utilizador.update', $user->id ], 'class' =>'form-horizontal',
+{!! Form::model($user, ['method' => 'put', 'route' => ['utilizador.update', $user->id ], 'class' =>'form-horizontal',
 'enctype' => "multipart/form-data"]) !!}
-{{method_field('PUT')}}
 @else
 {!! Form::model( ['method' => 'post', 'route' => ['utilizador.store' ], 'class' =>'form-horizontal', 'enctype' =>
 "multipart/form-data"]) !!}
