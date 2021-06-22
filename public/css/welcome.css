@@ -1,0 +1,43 @@
+.flex-center {
+    align-items: center;
+    display: block;
+    justify-content: center;
+}
+
+.position-ref {
+    position: absolute;
+    top: 35%;
+    left: 30%;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.title {
+    font-size: 100px;
+}
+
+.links>a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
