@@ -57,34 +57,34 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        
+
                         @if(Auth::user() and Auth::user()->tipo != 'C')
                         <a href="{{ route('encomenda.list') }}">Lista Encomendas</a>
-                        @endif                        
-                        <div style="margin-left: 10px;">
-                        @if(Auth::user() and Auth::user()->tipo == 'A')
-                        <a href="{{ route('utilizador.list') }}">| Lista Clientes</a>
                         @endif
+                        <div style="margin-left: 10px;">
+                            @if(Auth::user() and Auth::user()->tipo == 'A')
+                            <a href="{{ route('utilizador.list') }}">| Lista Clientes</a>
+                            @endif
                         </div>
                         <div style="margin-left: 10px;">
-                        @if(Auth::user() and Auth::user()->tipo == 'A')
-                        <a href="{{ route('utilizador.create') }}">| Criar Conta Utilizador</a>
-                        @endif
+                            @if(Auth::user() and Auth::user()->tipo == 'A')
+                            <a href="{{ route('utilizador.create') }}">| Criar Conta Utilizador</a>
+                            @endif
                         </div>
                         <div style="margin-left: 10px;">
-                        @if(Auth::user() and Auth::user()->tipo == 'A')
-                        <a href="{{route('cor.list')}}">| Gerir Cores</a>
-                        @endif
+                            @if(Auth::user() and Auth::user()->tipo == 'A')
+                            <a href="{{route('cor.list')}}">| Gerir Cores</a>
+                            @endif
                         </div>
                         <div style="margin-left: 10px;">
-                        @if(Auth::user() and Auth::user()->tipo == 'A')
-                        <a href="{{route('preco.list')}}">| Gerir Preços</a>
-                        @endif
+                            @if(Auth::user() and Auth::user()->tipo == 'A')
+                            <a href="{{route('preco.list')}}">| Gerir Preços</a>
+                            @endif
                         </div>
                         <div style="margin-left: 10px;">
-                        @if(Auth::user() and Auth::user()->tipo == 'A')
-                        <a href="{{route('estatisticas.index')}}">| Estatisticas</a>
-                        @endif
+                            @if(Auth::user() and Auth::user()->tipo == 'A')
+                            <a href="{{route('estatisticas.index')}}">| Estatisticas</a>
+                            @endif
                         </div>
                     </ul>
 
@@ -133,8 +133,7 @@
                     <!-- MINI-CART -->
                     @if(Auth::guest() or Auth::user()->tipo == 'C')
 
-                    <a class="show-mini-cart badge badge-light" href="{{ route('carrinho.index') }}"><span class="cart_count"><img style="width: 25px;" 
-                    src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNDg2LjU2OSA0ODYuNTY5IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0ODYuNTY5IDQ4Ni41Njk7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxwYXRoIGQ9Ik0xNDYuMDY5LDMyMC4zNjloMjY4LjFjMzAuNCwwLDU1LjItMjQuOCw1NS4yLTU1LjJ2LTExMi44YzAtMC4xLDAtMC4zLDAtMC40YzAtMC4zLDAtMC41LDAtMC44YzAtMC4yLDAtMC40LTAuMS0wLjYNCgkJYzAtMC4yLTAuMS0wLjUtMC4xLTAuN3MtMC4xLTAuNC0wLjEtMC42Yy0wLjEtMC4yLTAuMS0wLjQtMC4yLTAuN2MtMC4xLTAuMi0wLjEtMC40LTAuMi0wLjZjLTAuMS0wLjItMC4xLTAuNC0wLjItMC42DQoJCWMtMC4xLTAuMi0wLjItMC40LTAuMy0wLjdjLTAuMS0wLjItMC4yLTAuNC0wLjMtMC41Yy0wLjEtMC4yLTAuMi0wLjQtMC4zLTAuNmMtMC4xLTAuMi0wLjItMC4zLTAuMy0wLjVjLTAuMS0wLjItMC4zLTAuNC0wLjQtMC42DQoJCWMtMC4xLTAuMi0wLjItMC4zLTAuNC0wLjVjLTAuMS0wLjItMC4zLTAuMy0wLjQtMC41cy0wLjMtMC4zLTAuNC0wLjVzLTAuMy0wLjMtMC40LTAuNGMtMC4yLTAuMi0wLjMtMC4zLTAuNS0wLjUNCgkJYy0wLjItMC4xLTAuMy0wLjMtMC41LTAuNGMtMC4yLTAuMS0wLjQtMC4zLTAuNi0wLjRjLTAuMi0wLjEtMC4zLTAuMi0wLjUtMC4zcy0wLjQtMC4yLTAuNi0wLjRjLTAuMi0wLjEtMC40LTAuMi0wLjYtMC4zDQoJCXMtMC40LTAuMi0wLjYtMC4zcy0wLjQtMC4yLTAuNi0wLjNzLTAuNC0wLjEtMC42LTAuMmMtMC4yLTAuMS0wLjUtMC4yLTAuNy0wLjJzLTAuNC0wLjEtMC41LTAuMWMtMC4zLTAuMS0wLjUtMC4xLTAuOC0wLjENCgkJYy0wLjEsMC0wLjItMC4xLTAuNC0wLjFsLTMzOS44LTQ2Ljl2LTQ3LjRjMC0wLjUsMC0xLTAuMS0xLjRjMC0wLjEsMC0wLjItMC4xLTAuNGMwLTAuMy0wLjEtMC42LTAuMS0wLjljLTAuMS0wLjMtMC4xLTAuNS0wLjItMC44DQoJCWMwLTAuMi0wLjEtMC4zLTAuMS0wLjVjLTAuMS0wLjMtMC4yLTAuNi0wLjMtMC45YzAtMC4xLTAuMS0wLjMtMC4xLTAuNGMtMC4xLTAuMy0wLjItMC41LTAuNC0wLjhjLTAuMS0wLjEtMC4xLTAuMy0wLjItMC40DQoJCWMtMC4xLTAuMi0wLjItMC40LTAuNC0wLjZjLTAuMS0wLjItMC4yLTAuMy0wLjMtMC41cy0wLjItMC4zLTAuMy0wLjVzLTAuMy0wLjQtMC40LTAuNmMtMC4xLTAuMS0wLjItMC4yLTAuMy0wLjMNCgkJYy0wLjItMC4yLTAuNC0wLjQtMC42LTAuNmMtMC4xLTAuMS0wLjItMC4yLTAuMy0wLjNjLTAuMi0wLjItMC40LTAuNC0wLjctMC42Yy0wLjEtMC4xLTAuMy0wLjItMC40LTAuM2MtMC4yLTAuMi0wLjQtMC4zLTAuNi0wLjUNCgkJYy0wLjMtMC4yLTAuNi0wLjQtMC44LTAuNWMtMC4xLTAuMS0wLjItMC4xLTAuMy0wLjJjLTAuNC0wLjItMC45LTAuNC0xLjMtMC42bC03My43LTMxYy02LjktMi45LTE0LjgsMC4zLTE3LjcsNy4yDQoJCXMwLjMsMTQuOCw3LjIsMTcuN2w2NS40LDI3LjZ2NjEuMnY5Ljd2NzQuNHY2Ni41djg0YzAsMjgsMjEsNTEuMiw0OC4xLDU0LjdjLTQuOSw4LjItNy44LDE3LjgtNy44LDI4YzAsMzAuMSwyNC41LDU0LjUsNTQuNSw1NC41DQoJCXM1NC41LTI0LjUsNTQuNS01NC41YzAtMTAtMi43LTE5LjUtNy41LTI3LjVoMTIxLjRjLTQuOCw4LjEtNy41LDE3LjUtNy41LDI3LjVjMCwzMC4xLDI0LjUsNTQuNSw1NC41LDU0LjVzNTQuNS0yNC41LDU0LjUtNTQuNQ0KCQlzLTI0LjUtNTQuNS01NC41LTU0LjVoLTI1NWMtMTUuNiwwLTI4LjItMTIuNy0yOC4yLTI4LjJ2LTM2LjZDMTI2LjA2OSwzMTcuNTY5LDEzNS43NjksMzIwLjM2OSwxNDYuMDY5LDMyMC4zNjl6IE0yMTMuMjY5LDQzMS45NjkNCgkJYzAsMTUuMi0xMi40LDI3LjUtMjcuNSwyNy41cy0yNy41LTEyLjQtMjcuNS0yNy41czEyLjQtMjcuNSwyNy41LTI3LjVTMjEzLjI2OSw0MTYuNzY5LDIxMy4yNjksNDMxLjk2OXogTTQyOC42NjksNDMxLjk2OQ0KCQljMCwxNS4yLTEyLjQsMjcuNS0yNy41LDI3LjVzLTI3LjUtMTIuNC0yNy41LTI3LjVzMTIuNC0yNy41LDI3LjUtMjcuNVM0MjguNjY5LDQxNi43NjksNDI4LjY2OSw0MzEuOTY5eiBNNDE0LjE2OSwyOTMuMzY5aC0yNjguMQ0KCQljLTE1LjYsMC0yOC4yLTEyLjctMjguMi0yOC4ydi02Ni41di03NC40di01bDMyNC41LDQ0Ljd2MTAxLjFDNDQyLjM2OSwyODAuNzY5LDQyOS42NjksMjkzLjM2OSw0MTQuMTY5LDI5My4zNjl6Ii8+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8L3N2Zz4NCg==" />
+                    <a class="show-mini-cart badge badge-light" href="{{ route('carrinho.index') }}"><span class="cart_count"><img style="width: 25px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNDg2LjU2OSA0ODYuNTY5IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0ODYuNTY5IDQ4Ni41Njk7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxwYXRoIGQ9Ik0xNDYuMDY5LDMyMC4zNjloMjY4LjFjMzAuNCwwLDU1LjItMjQuOCw1NS4yLTU1LjJ2LTExMi44YzAtMC4xLDAtMC4zLDAtMC40YzAtMC4zLDAtMC41LDAtMC44YzAtMC4yLDAtMC40LTAuMS0wLjYNCgkJYzAtMC4yLTAuMS0wLjUtMC4xLTAuN3MtMC4xLTAuNC0wLjEtMC42Yy0wLjEtMC4yLTAuMS0wLjQtMC4yLTAuN2MtMC4xLTAuMi0wLjEtMC40LTAuMi0wLjZjLTAuMS0wLjItMC4xLTAuNC0wLjItMC42DQoJCWMtMC4xLTAuMi0wLjItMC40LTAuMy0wLjdjLTAuMS0wLjItMC4yLTAuNC0wLjMtMC41Yy0wLjEtMC4yLTAuMi0wLjQtMC4zLTAuNmMtMC4xLTAuMi0wLjItMC4zLTAuMy0wLjVjLTAuMS0wLjItMC4zLTAuNC0wLjQtMC42DQoJCWMtMC4xLTAuMi0wLjItMC4zLTAuNC0wLjVjLTAuMS0wLjItMC4zLTAuMy0wLjQtMC41cy0wLjMtMC4zLTAuNC0wLjVzLTAuMy0wLjMtMC40LTAuNGMtMC4yLTAuMi0wLjMtMC4zLTAuNS0wLjUNCgkJYy0wLjItMC4xLTAuMy0wLjMtMC41LTAuNGMtMC4yLTAuMS0wLjQtMC4zLTAuNi0wLjRjLTAuMi0wLjEtMC4zLTAuMi0wLjUtMC4zcy0wLjQtMC4yLTAuNi0wLjRjLTAuMi0wLjEtMC40LTAuMi0wLjYtMC4zDQoJCXMtMC40LTAuMi0wLjYtMC4zcy0wLjQtMC4yLTAuNi0wLjNzLTAuNC0wLjEtMC42LTAuMmMtMC4yLTAuMS0wLjUtMC4yLTAuNy0wLjJzLTAuNC0wLjEtMC41LTAuMWMtMC4zLTAuMS0wLjUtMC4xLTAuOC0wLjENCgkJYy0wLjEsMC0wLjItMC4xLTAuNC0wLjFsLTMzOS44LTQ2Ljl2LTQ3LjRjMC0wLjUsMC0xLTAuMS0xLjRjMC0wLjEsMC0wLjItMC4xLTAuNGMwLTAuMy0wLjEtMC42LTAuMS0wLjljLTAuMS0wLjMtMC4xLTAuNS0wLjItMC44DQoJCWMwLTAuMi0wLjEtMC4zLTAuMS0wLjVjLTAuMS0wLjMtMC4yLTAuNi0wLjMtMC45YzAtMC4xLTAuMS0wLjMtMC4xLTAuNGMtMC4xLTAuMy0wLjItMC41LTAuNC0wLjhjLTAuMS0wLjEtMC4xLTAuMy0wLjItMC40DQoJCWMtMC4xLTAuMi0wLjItMC40LTAuNC0wLjZjLTAuMS0wLjItMC4yLTAuMy0wLjMtMC41cy0wLjItMC4zLTAuMy0wLjVzLTAuMy0wLjQtMC40LTAuNmMtMC4xLTAuMS0wLjItMC4yLTAuMy0wLjMNCgkJYy0wLjItMC4yLTAuNC0wLjQtMC42LTAuNmMtMC4xLTAuMS0wLjItMC4yLTAuMy0wLjNjLTAuMi0wLjItMC40LTAuNC0wLjctMC42Yy0wLjEtMC4xLTAuMy0wLjItMC40LTAuM2MtMC4yLTAuMi0wLjQtMC4zLTAuNi0wLjUNCgkJYy0wLjMtMC4yLTAuNi0wLjQtMC44LTAuNWMtMC4xLTAuMS0wLjItMC4xLTAuMy0wLjJjLTAuNC0wLjItMC45LTAuNC0xLjMtMC42bC03My43LTMxYy02LjktMi45LTE0LjgsMC4zLTE3LjcsNy4yDQoJCXMwLjMsMTQuOCw3LjIsMTcuN2w2NS40LDI3LjZ2NjEuMnY5Ljd2NzQuNHY2Ni41djg0YzAsMjgsMjEsNTEuMiw0OC4xLDU0LjdjLTQuOSw4LjItNy44LDE3LjgtNy44LDI4YzAsMzAuMSwyNC41LDU0LjUsNTQuNSw1NC41DQoJCXM1NC41LTI0LjUsNTQuNS01NC41YzAtMTAtMi43LTE5LjUtNy41LTI3LjVoMTIxLjRjLTQuOCw4LjEtNy41LDE3LjUtNy41LDI3LjVjMCwzMC4xLDI0LjUsNTQuNSw1NC41LDU0LjVzNTQuNS0yNC41LDU0LjUtNTQuNQ0KCQlzLTI0LjUtNTQuNS01NC41LTU0LjVoLTI1NWMtMTUuNiwwLTI4LjItMTIuNy0yOC4yLTI4LjJ2LTM2LjZDMTI2LjA2OSwzMTcuNTY5LDEzNS43NjksMzIwLjM2OSwxNDYuMDY5LDMyMC4zNjl6IE0yMTMuMjY5LDQzMS45NjkNCgkJYzAsMTUuMi0xMi40LDI3LjUtMjcuNSwyNy41cy0yNy41LTEyLjQtMjcuNS0yNy41czEyLjQtMjcuNSwyNy41LTI3LjVTMjEzLjI2OSw0MTYuNzY5LDIxMy4yNjksNDMxLjk2OXogTTQyOC42NjksNDMxLjk2OQ0KCQljMCwxNS4yLTEyLjQsMjcuNS0yNy41LDI3LjVzLTI3LjUtMTIuNC0yNy41LTI3LjVzMTIuNC0yNy41LDI3LjUtMjcuNVM0MjguNjY5LDQxNi43NjksNDI4LjY2OSw0MzEuOTY5eiBNNDE0LjE2OSwyOTMuMzY5aC0yNjguMQ0KCQljLTE1LjYsMC0yOC4yLTEyLjctMjguMi0yOC4ydi02Ni41di03NC40di01bDMyNC41LDQ0Ljd2MTAxLjFDNDQyLjM2OSwyODAuNzY5LDQyOS42NjksMjkzLjM2OSw0MTQuMTY5LDI5My4zNjl6Ii8+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8L3N2Zz4NCg==" />
                             @if(Cart::instance('default')->count() > 0)
                             {{Cart::instance('default')->count()}}
                             @endif
@@ -206,4 +205,3 @@
     </div>
 
 </body>
-
