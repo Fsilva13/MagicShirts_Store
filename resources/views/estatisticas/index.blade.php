@@ -22,14 +22,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <span data-feather="file"></span>
-                                Pedidos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
                                 <span data-feather="shopping-cart"></span>
-                                Produtos
+                                Pedidos
                             </a>
                         </li>
                         <li class="nav-item">
@@ -216,7 +210,7 @@
         data: {
             labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
             datasets: [{
-                data: [15339, 21345, 18483, 24003, 23489, 24092, 52034],
+                data: [15339, 21345, 55483, 44003, 23489, 24092, 52034],
                 lineTension: 0,
                 backgroundColor: 'transparent',
                 borderColor: '#007bff',

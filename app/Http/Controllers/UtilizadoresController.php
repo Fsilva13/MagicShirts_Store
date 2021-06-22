@@ -50,11 +50,15 @@ class UtilizadoresController extends Controller
             $cliente->update($request->except('_token', '_method'));
         } else {
             $user = User::findOrFail($id);
-            
             $user->update($request->except('_token', '_method'));
         }
 
         if ($request->file('foto_url')) {
+            if ($cliente) {
+                Storage::delete('public/fotos/' . $cliente->user->foto_url);
+            } else {
+                Storage::delete('public/fotos/' . $user->foto_url);
+            }
             Storage::delete('public/fotos/' . $request->file('foto_url'));
             $path = $request->file('foto_url')->store('public/fotos');
             $path = str_replace('public/fotos/', '', $path);
@@ -63,11 +67,7 @@ class UtilizadoresController extends Controller
                 ->update(['foto_url' => $path]);
         }
 
-        if ($cliente or $user) {
-            return redirect()->back()->with('success', 'Conta atualizada com êxito!');
-        } else {
-            return redirect()->back()->withErrors(['error', "Registo não foi encontrado"]);
-        }
+        return redirect()->back()->with('success', 'Conta atualizada com êxito!');
     }
 
     public function password(Request $request)
@@ -93,15 +93,17 @@ class UtilizadoresController extends Controller
     }
 
 
-    public function bloquear(User $user){
+    public function bloquear(User $user)
+    {
 
-        $user->bloqueado = $user->bloqueado == '1' ? '0':'1';
+        $user->bloqueado = $user->bloqueado == '1' ? '0' : '1';
         $user->save();
 
         return redirect()->back();
     }
 
-    public function create(){
+    public function create()
+    {
         return view('utilizador.utilizadores');
     }
 
@@ -109,24 +111,45 @@ class UtilizadoresController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'email' => 'nullable',
+            'password' => ['required', 'string', 'min:8'],
+            'email' => 'email:rfc,dns|unique:users,email',
             'tipo' => 'required',
             'imagem' => 'image'
         ];
 
         $messages = [
             'nome.required' => 'É obrigatório ter um nome',
+            'email.email' => 'Email Invalido!'
         ];
 
         $request->validate($rules, $messages); //verifica rules
 
-        User::create([
-            "nome" => $request->get('nome'),
-            "email" => $request->get('email'),
-            "tipo" => $request->get('tipo'),
-            "imagem_url" => $request->imagem->hashName()
-        ]);
+        if ($request->file('foto_url')) {
 
-        return redirect()->route('estampas.list')->with('success', 'Utilizador criado com sucesso!');
+            
+            $path = $request->file('foto_url')->store('public/fotos');
+            $path = str_replace('public/fotos/', '', $path);
+
+           $user = User::create([
+                "name" => $request->get('name'),
+                "email" => $request->get('email'),
+                "password" => $path,
+                "tipo" => $request->get('tipo'),
+                "foto_url" => $request->foto_url->hashName()
+            ]);
+        } else {
+            $user = User::create([
+                "name" => $request->get('name'),
+                "email" => $request->get('email'),
+                "password" => Hash::make($request->get('password')),
+                "tipo" => $request->get('tipo'),
+            ]);
+        }
+        if($user){
+            return redirect()->route('estampas.list')->with('success', 'Utilizador criado com sucesso!');
+        }else{
+            return redirect()->route('estampas.list')->with('error', 'Erro ao criar utilizador!');
+        }
+        
     }
 }
