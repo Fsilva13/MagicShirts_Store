@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Auth;
 */
 
 //Pag.Inicial
-Route::get('/','EstampasController@index')->name('estampas.list');
+Route::get('/', function(){return view('welcome');})->name('welcome');
+
 
 //Encomenda
 Route::get('encomenda/list','EncomendasController@index')->name('encomenda.list');
@@ -34,6 +35,7 @@ Route::get('utilizador/create','UtilizadoresController@create')->name('utilizado
 Route::post('utilizador/store','UtilizadoresController@store')->name('utilizador.store');
 
 //Estampa
+Route::get('estampa/list', 'EstampasController@index')->name('estampas.list');
 Route::get('estampa/create','EstampasController@create')->name('estampa.create');
 Route::post('estampa/store','EstampasController@store')->name('estampa.store');
 Route::get('estampa/edit/{estampa}','EstampasController@edit')->name('estampa.edit');
