@@ -27,7 +27,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="#" >
                                 <span data-feather="users"></span>
                                 Clientes
                             </a>
@@ -51,29 +51,32 @@
 
                 <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 
-                <h2>Título da seção</h2>
-                <div class="table-responsive">
-                    <table class="table table-striped table-sm">
+                <h2>Lsita de Clientes</h2>
+                <div  class="table-responsive">
+                    <table id="tabela" class="table table-striped table-sm">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Cabeçalho</th>
-                                <th>Cabeçalho</th>
-                                <th>Cabeçalho</th>
-                                <th>Cabeçalho</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse($clientes as $cliente)
                             <tr>
-                                <td>1,001</td>
-                                <td>Lorem</td>
-                                <td>ipsum</td>
-                                <td>dolor</td>
-                                <td>sit</td>
+                                <td > {{$cliente->id}}</td>
+                                <td> {{$cliente->name}}</td>
+                                <td> {{$cliente->email}}</td>
                             </tr>
-                           
+                            @empty
+                            <tr>
+                                <td colspan="6">Nenhum registo encontrado para listar</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
+                    {{ $clientes->links() }}
                 </div>
             </main>
         </div>
@@ -101,12 +104,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script>
     var ctx = document.getElementById("myChart");
+    var data1 = document.getElementById("tabela").value;
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            labels: [],
             datasets: [{
-                data: [15339, 21345, 55483, 44003, 23489, 24092, 52034],
+                data: data1,
                 lineTension: 0,
                 backgroundColor: 'transparent',
                 borderColor: '#007bff',
@@ -118,7 +122,7 @@
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: false
+                        beginAtZero: true
                     }
                 }]
             },

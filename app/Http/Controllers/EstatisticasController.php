@@ -12,11 +12,11 @@ class EstatisticasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $users = DB::table('users')->where('tipo', '=','C')->get();
+    public function index(Request $request)
+    {   
+        $clientes = DB::table('users')->where('tipo', '=','C')->paginate(12);
         
-        return view('estatisticas.index');
+        return view('estatisticas.index', compact('clientes'));
     }
 
     /**
