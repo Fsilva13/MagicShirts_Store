@@ -9,7 +9,7 @@
     <table class="table table-bordered table-striped table-sm">
         <thead>
             <tr>
-                <th>#</th>
+                <th>Codigo da Cor</th>
                 <th>Nome</th>
                 </th>
             </tr>

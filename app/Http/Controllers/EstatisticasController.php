@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EstatisticasController extends Controller
 {
@@ -13,6 +14,8 @@ class EstatisticasController extends Controller
      */
     public function index()
     {
+        $users = DB::table('users')->where('tipo', '=','C')->get();
+        
         return view('estatisticas.index');
     }
 
