@@ -37,7 +37,7 @@
                 <div class="form-group col-7 ">
                     <label class="control-label" for="name">Nome</label>
                     <input id="name" name="name" type="text" placeholder="" class="form-control input-md"
-                        value="{{  old('name') ?? isset($user) ?  $user->name : '' ?? '' }}">
+                        value="{{  old('name')}}">
                     @error('name')
                     <div class="error">
                         {{$message}}
@@ -49,7 +49,7 @@
                 <div class="form-group col-7 ">
                     <label class="control-label" for="password">Password</label>
                     <input id="password" name="password" type="password" placeholder="" class="form-control input-md"
-                        value="{{ old('password') ?? isset($user) ? $user->password : '' ?? '' }}">
+                        value="{{ old('password')}}">
                     @error('password')
                     <div class="error">
                         {{$message}}
@@ -62,7 +62,7 @@
                 <div class="form-group col-7">
                     <label class=" control-label" for="email">Email</label>
                     <input id="email" name="email" type="text" placeholder="" class="form-control input-md"
-                        value="{{old('email') ?? isset($user) ? $user->email : '' ?? ''}}">
+                        value="{{old('email')}}">
                     @error('email')
                     <div class="error">
                         {{$message}}

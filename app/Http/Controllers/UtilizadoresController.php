@@ -66,7 +66,7 @@ class UtilizadoresController extends Controller
                 ->where('id', $id)
                 ->update(['foto_url' => $path]);
         }
-
+            
         return redirect()->back()->with('success', 'Conta atualizada com êxito!');
     }
 
