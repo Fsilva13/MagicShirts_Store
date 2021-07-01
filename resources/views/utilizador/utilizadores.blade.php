@@ -78,7 +78,7 @@
                         <option value="" selected disabled hidden>--Tipo Utilizador--</option>
                         @foreach(["A" => "Admin", "F" => "Funcionario"] AS $tipo => $userLabel)
                         <option value="{{$tipo}}"
-                            {{ old("tipo") ?? (isset($user) ? $user->tipo == $tipo : '') ? "selected" : "" }}>
+                            {{ old("tipo") ? "selected" : "" }}>
                             {{ $userLabel }}
                         </option>
                         @endforeach
