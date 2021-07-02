@@ -96,6 +96,16 @@ class EncomendasController extends Controller
 				} else {
 					$preco_un = $precos->preco_un_proprio;
 				}
+				
+				Tshirt::create([
+					'encomenda_id' => $encomenda->id,
+					'estampa_id' => $item->model->id,
+					'cor_codigo' => $item->options['cor']->codigo,
+					'tamanho' => $item->options['tamanho'],
+					'quantidade' => $item->qty,
+					'preco_un' => $preco_un,
+					'subtotal' => $item->qty * $preco_un,
+				]);
 			} else {
 				if ($item->qty >= $precos->quantidade_desconto) {
 					$preco_un = $precos->preco_un_catalogo_desconto;

@@ -75,7 +75,6 @@
 
       <tr class="total">
         <td></td>
-
         <td>Total: {{$encomenda->preco_total}} €</td>
       </tr>
     </table>

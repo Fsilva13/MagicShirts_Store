@@ -111,8 +111,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                 @if (Auth::user()->cliente)
-                                <a class="dropdown-item" href="{{ route('encomenda.list') }}">Historico de
-                                    Encomendas</a>
+                                <a class="dropdown-item" href="{{ route('encomenda.list') }}">Historico de Encomendas</a>
                                 <a href="{{route('utilizador.edit', ['id' => Auth::id()]) }}" class="dropdown-item">Dados da Conta</a>
                                 @endif
                                 <!-- Button trigger modal -->
